@@ -10,10 +10,11 @@ import com.jme3.math.Vector3f;
  * @author Ian
  */
 public class BossChair extends GameActor {
-
-    int health = 5000;
-    Vector3f position;
-    
+    private float angle;
+    private int health = 5000;
+    private Vector3f position;
+    private Level gameLevel;
+    private float maxSpeed = 0.11f;
     void update(float tpf) {
     }
 
