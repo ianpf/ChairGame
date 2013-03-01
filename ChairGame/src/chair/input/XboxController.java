@@ -10,6 +10,7 @@ import com.jme3.input.controls.AnalogListener;
 import com.jme3.input.controls.JoyAxisTrigger;
 import com.jme3.math.FastMath;
 import com.jme3.math.Vector2f;
+import com.jme3.math.Vector3f;
 
 /**
  *
@@ -36,10 +37,10 @@ public class XboxController extends InputController
         return this.getJoystick().getJoyId();
     }
     
-    public Vector2f getLeftAxisVector()
+    public Vector3f getLeftAxisVector()
     {
-        Vector2f dir;
-        dir = new Vector2f((float)leftXAxis, (float)-leftYAxis);
+        Vector3f dir;
+        dir = new Vector3f((float)leftXAxis, 0, (float)-leftYAxis);
         
         return dir;
     }
