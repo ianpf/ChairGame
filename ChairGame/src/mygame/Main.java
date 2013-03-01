@@ -49,8 +49,8 @@ public class Main extends SimpleApplication
     {
         InputController controller = il.getInputControllers()[0];
         //controller.getLeftAxisDirection();
-        System.out.println("LS Angle = " + controller.getLeftAxisDirection() + " LS Power =" + controller.getLeftAxisPower());
-        System.out.println("RS Angle = " + controller.getRightAxisDirection() + " RS Power =" + controller.getRightAxisPower());
+        //System.out.println("LS Angle = " + controller.getLeftAxisDirection() + " LS Power =" + controller.getLeftAxisPower());
+        //System.out.println("RS Angle = " + controller.getRightAxisDirection() + " RS Power =" + controller.getRightAxisPower());
     }
 
     @Override

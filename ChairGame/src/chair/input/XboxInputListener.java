@@ -79,6 +79,7 @@ public class XboxInputListener extends InputListener
 
     public void onJoyButtonEvent(JoyButtonEvent evt) 
     {
+        System.out.println(evt.getButtonIndex());
     }
 
 }

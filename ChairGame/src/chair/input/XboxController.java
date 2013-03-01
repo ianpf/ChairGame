@@ -25,6 +25,19 @@ public class XboxController extends InputController
     public static final int LEFT_TRIGGER = 4;
     public static final int RIGHT_TRIGGER = 5;
     
+    public static final int DIR_UP = 0;
+    public static final int DIR_DOWN = 1;
+    public static final int DIR_LEFT = 2;
+    public static final int DIR_RIGHT = 3;
+    public static final int START = 4;
+    public static final int BACK = 5;
+    public static final int LSBUTTON = 6;
+    public static final int RSBUTTON = 7;
+    public static final int LEFT_BUMPER = 8;
+    public static final int RIGHT_BUMPER = 9;
+    public static final int XBOX_BUTTON = 10;
+    public static final int 
+    
     private Joystick joystick;
     
     public XboxController(Joystick joystick)
