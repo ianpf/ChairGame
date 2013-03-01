@@ -1,8 +1,9 @@
+package mygame;
+import com.jme3.math.Vector3f;
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package mygame;
 
 /**
  *
@@ -11,7 +12,8 @@ package mygame;
 public class BossChair extends GameActor {
 
     int health = 5000;
-
+    Vector3f position;
+    
     void update(float tpf) {
     }
 
@@ -20,8 +22,8 @@ public class BossChair extends GameActor {
     }
     
     public void BossChair(){
-        this.type = GameObjectType.ACTOR;
-        
+        this.type = GameObjectType.ACTOR;    
     }
-    public void onCollision(GameObject object){}
+    public void onCollision(GameObject object){
+    }
 }

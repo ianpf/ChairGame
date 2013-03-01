@@ -15,7 +15,7 @@ public class OfficeChair extends GameActor {
     private Level gameLevel;
     private Weapon playerWeapon;
     private XboxController playerInput;
-    private float maxSpeed = 0.1;
+    private float maxSpeed = 0.1f;
 
     public OfficeChair(Level gameLevel, Vector3f startPosition, float angle,
             XboxController playerInput, Spatial objectModel, PhysicsRigidBody
