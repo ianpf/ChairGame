@@ -8,19 +8,14 @@ package mygame;
  *
  * @author Ian
  */
-public class BossChair extends GameActor
-{
+public class BossChair extends GameActor {
+
     int health = 5000;
-    
-    
-    void update(float tpf)
-    {
-    
+
+    void update(float tpf) {
     }
-    
-    public void takeDamage(int damage)
-    {
+
+    public void takeDamage(int damage) {
         health -= damage;
     }
-    
 }

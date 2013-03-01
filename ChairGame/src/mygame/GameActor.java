@@ -8,7 +8,7 @@ package mygame;
  *
  * @author Ian
  */
-public abstract class GameActor extends GameObject
-{
+public abstract class GameActor extends GameObject {
+
     public abstract void takeDamage(int damage);
 }
