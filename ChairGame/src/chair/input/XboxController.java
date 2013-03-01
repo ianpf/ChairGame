@@ -105,7 +105,7 @@ public class XboxController extends InputController
         Vector2f dir;
         dir = new Vector2f(rightXAxis, rightYAxis);
         dir.normalizeLocal();
-            
+        
         return dir.getAngle();
     }
 
@@ -118,7 +118,7 @@ public class XboxController extends InputController
         return Math.min(1, dir.length());
     }
     
-    private boolean isDirUp()
+    public boolean isDirUp()
     {
         boolean res = isDirUp;
         
@@ -127,7 +127,12 @@ public class XboxController extends InputController
         return res;
     }
     
-    private boolean isDirDown()
+    public void setDirUp()
+    {
+        isDirUp = true;
+    }
+    
+    public boolean isDirDown()
     {
         boolean res = isDirDown;
         
@@ -136,7 +141,12 @@ public class XboxController extends InputController
         return res;
     }
     
-    private boolean isDirLeft()
+    public void setDirDown()
+    {
+        isDirDown = true;
+    }
+    
+    public boolean isDirLeft()
     {
         boolean res = isDirLeft;
         
@@ -145,7 +155,12 @@ public class XboxController extends InputController
         return res;
     }
     
-    private boolean isDirRight()
+    public void setDirLeft()
+    {
+        isDirLeft = true;
+    }
+    
+    public boolean isDirRight()
     {
         boolean res = isDirRight;
         
@@ -154,7 +169,11 @@ public class XboxController extends InputController
         return res;
     }
     
-    private boolean isStart()
+    public void setDirRight()
+    {
+    }
+    
+    public boolean isStart()
     {
         boolean res = isStart;
         
@@ -163,7 +182,7 @@ public class XboxController extends InputController
         return res;
     }
     
-    private boolean isBack()
+    public boolean isBack()
     {
         boolean res = isBack;
         
@@ -172,7 +191,7 @@ public class XboxController extends InputController
         return res;
     }
     
-    private boolean isLSButton()
+    public boolean isLSButton()
     {
         boolean res = isLSButton;
         
@@ -181,7 +200,7 @@ public class XboxController extends InputController
         return res;
     }
     
-    private boolean isRSButton()
+    public boolean isRSButton()
     {
         boolean res = isRSButton;
         
@@ -190,7 +209,7 @@ public class XboxController extends InputController
         return res;
     }
     
-    private boolean isLeftBumper()
+    public boolean isLeftBumper()
     {
         boolean res = isLeftBumper;
         
@@ -199,7 +218,7 @@ public class XboxController extends InputController
         return res;
     }
     
-    private boolean isRightBumper()
+    public boolean isRightBumper()
     {
         boolean res = isRightBumper;
         
@@ -208,7 +227,7 @@ public class XboxController extends InputController
         return res;
     }
     
-    private boolean isXBoxButton()
+    public boolean isXBoxButton()
     {
         boolean res = isXBoxButton;
         
@@ -217,7 +236,7 @@ public class XboxController extends InputController
         return res;
     }
     
-    private boolean isA_Button()
+    public boolean isA_Button()
     {
         boolean res = isA_Button;
         
@@ -226,7 +245,7 @@ public class XboxController extends InputController
         return res;
     }
     
-    private boolean isB_Button()
+    public boolean isB_Button()
     {
         boolean res = isB_Button;
         
@@ -235,7 +254,7 @@ public class XboxController extends InputController
         return res;
     }
     
-    private boolean isX_Button()
+    public boolean isX_Button()
     {
         boolean res = isX_Button;
         
@@ -244,7 +263,7 @@ public class XboxController extends InputController
         return res;
     }
     
-    private boolean isY_Button()
+    public boolean isY_Button()
     {
         boolean res = isY_Button;
         
