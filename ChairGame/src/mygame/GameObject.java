@@ -9,7 +9,7 @@ import com.jme3.bullet.objects.PhysicsRigidBody;
  */
 abstract class GameObject {
     private Spatial objectModel;
-    private PhysicsRidgidBody ridgidBody;
+    private PhysicsRigidBody rigidBody;
 
     abstract void update(float tpf);
 }
