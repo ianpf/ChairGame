@@ -22,6 +22,7 @@ public abstract class InputListener implements RawInputListener
     public static final double INPUT_THRESHOLD = 0.25;
     public InputListener(InputManager inputManager)
     {
+        System.out.println(inputManager);
         inputManager.addRawInputListener(this);
     }
 

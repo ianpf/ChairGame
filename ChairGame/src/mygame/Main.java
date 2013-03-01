@@ -28,6 +28,7 @@ public class Main extends SimpleApplication
 {
     XboxInputListener il;
     public static Level l;
+    static boolean startLevel;
     
     public static void main(String[] args) {
         Main app = new Main();
@@ -35,10 +36,14 @@ public class Main extends SimpleApplication
         app.start();
     }
     
+    public static void startLevel(){
+        startLevel = true;
+    }
+    
     
     
     public Nifty nifty;
-    public int gameState = 0;
+    public static int gameState = 0;
     public void loadMainMenu() {
         NiftyJmeDisplay niftyDisplay = new NiftyJmeDisplay(assetManager, inputManager, audioRenderer, guiViewPort);
         nifty = niftyDisplay.getNifty();
@@ -56,8 +61,6 @@ public class Main extends SimpleApplication
         setDisplayFps(false);
         
         loadMainMenu();
-        
-        
    
     }
     
@@ -67,9 +70,12 @@ public class Main extends SimpleApplication
     @Override
     public void simpleUpdate(float tpf)
     {
-        
-        l.update(tpf);
-        
+        if(startLevel){
+            l = new Level(rootNode, assetManager, inputManager);
+        }
+        if(l!=null){
+            l.update(tpf);
+        }
         //InputController controller = il.getInputControllers()[0];
         //controller.getLeftAxisDirection();
         //System.out.println("LS Angle = " + controller.getLeftAxisDirection() + " LS Power =" + controller.getLeftAxisPower());
