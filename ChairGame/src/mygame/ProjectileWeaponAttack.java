@@ -15,12 +15,16 @@ public class ProjectileWeaponAttack extends WeaponAttack {
     private int damage;
     private float speed; 
     
+    public ProjectileWeaponAttack(Weapon weapon) {
+        super(weapon);
+    }
+    
     public void update(float tpf) {
         
     }
-    public void use(Level level, Vector3f location, float angle) {
-        Projectile shot = new Projectile(location, damage, angle, speed);
-        level.spawnProjectile(shot);
+    public void use() {
+        Projectile shot = new Projectile(getWeapon().getOwner().getLocation(), damage, getWeapon().getOwner().getAngle(), speed);
+        getWeapon().getOwner().getLevel().spawnProjectile(shot);
     }
     
 }
