@@ -25,7 +25,7 @@ public class Level implements PhysicsCollisionListener {
     Node rootNode;
     AssetManager assetManager;
     InputManager inputManager;
-    
+    LinkedList<GameObject> allObjects;
  
     //Remove these from PhysicsSpace at the beginning of an update.
     LinkedList<GameObject> killUs;
@@ -37,6 +37,7 @@ public class Level implements PhysicsCollisionListener {
         inputManager = input;
         physicsSpace = new PhysicsSpace();
         killUs = new LinkedList<GameObject>();
+        allObjects = new LinkedList<GameObject>();
         
         XboxInputListener controllerListener = new XboxInputListener(input);
         Spatial chairSpatial = 
@@ -104,7 +105,11 @@ public class Level implements PhysicsCollisionListener {
                     break;
                 default:
             }
+            allObjects.remove(g);
             killUs.remove(g);
+        }
+        for(GameObject g: allObjects){
+            g.update(tpf);
         }
     }
     
