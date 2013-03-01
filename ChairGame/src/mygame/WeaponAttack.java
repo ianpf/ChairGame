@@ -4,10 +4,14 @@
  */
 package mygame;
 
+import com.jme3.math.Vector3f;
+
 /**
  *
  * @author Alex
  */
-public class ProjectileWeapon {
+public abstract class WeaponAttack {
+    
+    public abstract void use(Vector3f location, float angle);
     
 }
