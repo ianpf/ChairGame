@@ -8,7 +8,6 @@ import com.jme3.scene.Spatial;
  * @author Ian Fisher
  */
 public class OfficeChair extends GameActor {
-
     private float angle;
     private int health = 100;
     private Vector3f position = new Vector3f();
@@ -19,6 +18,7 @@ public class OfficeChair extends GameActor {
 
     public OfficeChair(Level gameLevel, Vector3f startPosition, float angle,
             XboxController playerInput, Spatial objectModel) {
+        this.type = GameObjectType.ACTOR;
         this.health = health;
         this.objectModel = objectModel;
         this.angle = angle;
@@ -27,7 +27,7 @@ public class OfficeChair extends GameActor {
         this.playerInput = playerInput;
     }
 
-    public void chairCollision() {
+    public void onCollision(GameObject object) {
     }
 
     public void movement(Vector3f movementInput) {
