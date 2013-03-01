@@ -18,4 +18,10 @@ public class BossChair extends GameActor {
     public void takeDamage(int damage) {
         health -= damage;
     }
+    
+    public void BossChair(){
+        this.type = GameObjectType.ACTOR;
+        
+    }
+    public void onCollision(GameObject object){}
 }

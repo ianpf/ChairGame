@@ -42,7 +42,7 @@ public class XboxInputListener extends InputListener
 
     public void onJoyAxisEvent(JoyAxisEvent evt) 
     {
-        double value = evt.getValue();
+        float value = evt.getValue();
         
         InputController ic = controllers[0];
         
