@@ -1,6 +1,7 @@
 package mygame;
 
 import com.jme3.scene.Spatial;
+import com.jme3.bullet.objects.PhysicsRigidBody;
 
 /**
  *
@@ -8,6 +9,7 @@ import com.jme3.scene.Spatial;
  */
 abstract class GameObject {
     private Spatial objectModel;
+    private PhysicsRidgidBody ridgidBody;
 
     abstract void update(float tpf);
 }
