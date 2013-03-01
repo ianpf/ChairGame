@@ -27,7 +27,8 @@ import mygame.GameMenuHUD;
 public class Main extends SimpleApplication
 {
     XboxInputListener il;
-
+    public static Level l;
+    
     public static void main(String[] args) {
         Main app = new Main();
         app.setPauseOnLostFocus(false);
@@ -56,7 +57,6 @@ public class Main extends SimpleApplication
         
         loadMainMenu();
         
-        Level l = new Level(rootNode, assetManager, inputManager);
         
    
     }
@@ -67,6 +67,9 @@ public class Main extends SimpleApplication
     @Override
     public void simpleUpdate(float tpf)
     {
+        
+        l.update(tpf);
+        
         //InputController controller = il.getInputControllers()[0];
         //controller.getLeftAxisDirection();
         //System.out.println("LS Angle = " + controller.getLeftAxisDirection() + " LS Power =" + controller.getLeftAxisPower());
