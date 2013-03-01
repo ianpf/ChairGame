@@ -20,6 +20,8 @@ public class Projectile extends GameObject {
     private Vector3f direction;
     
     public Projectile(Vector3f location, int damage, float angle, float speed) {
+        this.type = GameObjectType.PROJECTILE;
+        
         this.damage = damage;
         this.angle = angle;
         this.speed = speed;
@@ -41,6 +43,10 @@ public class Projectile extends GameObject {
     
     public void update(float tpf) {
        
+    }
+    
+    public void onCollision(GameObject object) {
+        
     }
     
 }
