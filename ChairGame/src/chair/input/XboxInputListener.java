@@ -26,6 +26,8 @@ public class XboxInputListener extends InputListener
     {
         super(inputManager);
         Joystick joysticks[] = inputManager.getJoysticks();
+        if (joysticks == null)
+            System.exit(4);
         
         controllers = new InputController[joysticks.length];
         

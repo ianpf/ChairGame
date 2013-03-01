@@ -56,6 +56,8 @@ public class Main extends SimpleApplication
         
         loadMainMenu();
         
+        Level l = new Level(rootNode, assetManager, inputManager);
+        
    
     }
     
@@ -65,10 +67,10 @@ public class Main extends SimpleApplication
     @Override
     public void simpleUpdate(float tpf)
     {
-        InputController controller = il.getInputControllers()[0];
+        //InputController controller = il.getInputControllers()[0];
         //controller.getLeftAxisDirection();
-        System.out.println("LS Angle = " + controller.getLeftAxisDirection() + " LS Power =" + controller.getLeftAxisPower());
-        System.out.println("RS Angle = " + controller.getRightAxisDirection() + " RS Power =" + controller.getRightAxisPower());
+        //System.out.println("LS Angle = " + controller.getLeftAxisDirection() + " LS Power =" + controller.getLeftAxisPower());
+        //System.out.println("RS Angle = " + controller.getRightAxisDirection() + " RS Power =" + controller.getRightAxisPower());
     }
 
     @Override
