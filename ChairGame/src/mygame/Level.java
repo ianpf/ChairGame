@@ -33,6 +33,7 @@ public class Level implements PhysicsCollisionListener {
         rootNode = root;
         assetManager = assets;
         inputManager = input;
+        physicsSpace = new PhysicsSpace();
         killUs = new LinkedList<GameObject>();
         
         XboxInputListener controllerListener = new XboxInputListener(input);
