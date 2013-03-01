@@ -3,6 +3,7 @@ package mygame;
 import com.jme3.math.Vector3f;
 import chair.input.*;
 import com.jme3.scene.Spatial;
+import com.jme3.bullet.objects.PhysicsRigidBody;
 
 /**
  * @author Ian Fisher
@@ -17,9 +18,11 @@ public class OfficeChair extends GameActor {
     private float maxSpeed = 10;
 
     public OfficeChair(Level gameLevel, Vector3f startPosition, float angle,
-            XboxController playerInput, Spatial objectModel) {
+            XboxController playerInput, Spatial objectModel, PhysicsRigidBody
+                    rigidBody) {
         this.type = GameObjectType.ACTOR;
         this.health = health;
+        this.rigidBody = rigidBody;
         this.objectModel = objectModel;
         this.angle = angle;
         this.position = startPosition;
