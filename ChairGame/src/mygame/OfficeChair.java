@@ -29,7 +29,19 @@ public class OfficeChair extends GameActor {
         this.gameLevel = gameLevel;
         this.playerInput = playerInput;
     }
+    
+    public Vector3f getPosition(){
+        return position;
+    }
+    
+    public float getAngle(){
+        return angle;
+    }
 
+    public Level getLevel() {
+        return this.gameLevel;
+    }
+    
     public void onCollision(GameObject object) {
     }
 
@@ -42,11 +54,11 @@ public class OfficeChair extends GameActor {
     }
 
     public void primaryAttack() {
-        this.playerWeapon.usePrimary(position, angle);
+        this.playerWeapon.usePrimary();
     }
 
     public void secondaryAttack() {
-        this.playerWeapon.useSecondary(position, angle);
+        this.playerWeapon.useSecondary();
     }
 
     public void takeDamage(int damage) {

@@ -14,14 +14,18 @@ import de.lessvoid.nifty.screen.Screen;
 import de.lessvoid.nifty.screen.ScreenController;
 import mygame.Main;
 
-public class GameMenuHUD extends Main implements ScreenController {
+public class GameMenuHUD implements ScreenController 
+{
+    Nifty nifty;
+    
+    
 
     public void bind(Nifty nifty, Screen screen) {
         this.nifty = nifty;
     }
 
     public void onStartScreen() {
-        Main.l = new Level(rootNode, assetManager, inputManager);
+        Main.startLevel();
     }
 
     public void onEndScreen() {
@@ -29,6 +33,8 @@ public class GameMenuHUD extends Main implements ScreenController {
 
     public void quit() {
         nifty.exit();
-        gameState = 1;
+
+        Main.gameState = 1;
+        //Main.simpleInitApp();
     }
 }
