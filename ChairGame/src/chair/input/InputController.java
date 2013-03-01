@@ -13,10 +13,10 @@ import com.jme3.input.Joystick;
 public abstract class InputController 
 {
     protected Joystick joystick;
-    protected double leftXAxis;
-    protected double leftYAxis;
-    protected double rightXAxis;
-    protected double rightYAxis;
+    protected float leftXAxis;
+    protected float leftYAxis;
+    protected float rightXAxis;
+    protected float rightYAxis;
     
     public InputController(Joystick joystick)
     {
@@ -33,7 +33,7 @@ public abstract class InputController
         return this.joystick;
     }
     
-    public void setLeftXAxis(double x)
+    public void setLeftXAxis(float x)
     {
         if(x < InputListener.INPUT_THRESHOLD && x > -InputListener.INPUT_THRESHOLD)
         {
@@ -46,7 +46,7 @@ public abstract class InputController
         leftXAxis = x;
     }
     
-    public void setLeftYAxis(double y)
+    public void setLeftYAxis(float y)
     {
         if(y < InputListener.INPUT_THRESHOLD && y > -InputListener.INPUT_THRESHOLD)
         {
@@ -59,7 +59,7 @@ public abstract class InputController
         leftYAxis = y;
     }
     
-    public void setRightXAxis(double x)
+    public void setRightXAxis(float x)
     {
         if(x < InputListener.INPUT_THRESHOLD && x > -InputListener.INPUT_THRESHOLD)
         {
@@ -71,7 +71,7 @@ public abstract class InputController
         rightXAxis = x;
     }
     
-    public void setRightYAxis(double y)
+    public void setRightYAxis(float y)
     {
         if(y < InputListener.INPUT_THRESHOLD && y > -InputListener.INPUT_THRESHOLD)
         {
@@ -84,8 +84,8 @@ public abstract class InputController
     }
     
     public abstract int getControllerID();
-    public abstract double getLeftAxisDirection();
-    public abstract double getLeftAxisPower();
-    public abstract double getRightAxisDirection();
-    public abstract double getRightAxisPower();
+    public abstract float getLeftAxisDirection();
+    public abstract float getLeftAxisPower();
+    public abstract float getRightAxisDirection();
+    public abstract float getRightAxisPower();
 }
