@@ -15,7 +15,7 @@ public class OfficeChair extends GameActor {
     private Level gameLevel;
     private Weapon playerWeapon;
     private XboxController playerInput;
-    private float maxSpeed = 10;
+    private float maxSpeed = 0.1;
 
     public OfficeChair(Level gameLevel, Vector3f startPosition, float angle,
             XboxController playerInput, Spatial objectModel, PhysicsRigidBody
@@ -55,7 +55,6 @@ public class OfficeChair extends GameActor {
 
     // Get the health of the player
     void update(float tpf) {
-
         this.movement(playerInput.getLeftAxisVector().mult(maxSpeed));
         angle = playerInput.getRightAxisDirection();
     }
