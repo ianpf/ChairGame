@@ -19,7 +19,7 @@ public class Projectile extends GameObject {
     
     private Vector3f direction;
     
-    public Projectile(int damage, float angle, float speed) {
+    public Projectile(Vector3f location, int damage, float angle, float speed) {
         this.damage = damage;
         this.angle = angle;
         this.speed = speed;
