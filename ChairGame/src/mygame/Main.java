@@ -67,9 +67,9 @@ public class Main extends SimpleApplication
     @Override
     public void simpleUpdate(float tpf)
     {
-        
-        l.update(tpf);
-        
+        if(l!=null){
+            l.update(tpf);
+        }
         //InputController controller = il.getInputControllers()[0];
         //controller.getLeftAxisDirection();
         //System.out.println("LS Angle = " + controller.getLeftAxisDirection() + " LS Power =" + controller.getLeftAxisPower());

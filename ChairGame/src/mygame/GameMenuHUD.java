@@ -30,6 +30,5 @@ public class GameMenuHUD extends Main implements ScreenController {
     public void quit() {
         nifty.exit();
         gameState = 1;
-        simpleInitApp();
     }
 }
