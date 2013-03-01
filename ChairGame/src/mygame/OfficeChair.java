@@ -29,6 +29,14 @@ public class OfficeChair extends GameActor {
         this.gameLevel = gameLevel;
         this.playerInput = playerInput;
     }
+    
+    public Vector3f getPosition(){
+        return position;
+    }
+    
+    public float getAngle(){
+        return angle;
+    }
 
     public void onCollision(GameObject object) {
     }
