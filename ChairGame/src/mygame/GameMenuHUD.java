@@ -21,7 +21,7 @@ public class GameMenuHUD extends Main implements ScreenController {
     }
 
     public void onStartScreen() {
-        
+        Main.l = new Level(rootNode, assetManager, inputManager);
     }
 
     public void onEndScreen() {
