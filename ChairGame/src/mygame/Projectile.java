@@ -4,44 +4,40 @@
  */
 package mygame;
 
-import com.jme3.bullet.objects.PhysicsRigidBody;
+import com.jme3.math.Vector3f;
+import com.jme3.math.Quaternion;
 
 /**
  *
  * @author Alex
  */
-public class Projectile extends PhysicsRigidBody {
+public class Projectile extends GameObject {
     
-    private float x = 0;
-    private float z = 0;
-    private float speedX = 0;
-    private float speedZ = 0;
+    private int damage;
+    private float angle;
+    private float speed;
     
-    public Projectile(float x, float z, float speedX, float speedZ) {
-        this.x = x;
-        this.z = z;
-        this.speedX = speedX;
-        this.speedZ = speedZ;
+    private Vector3f direction;
+    
+    public Projectile(int damage, float angle, float speed) {
+        this.damage = damage;
+        this.angle = angle;
+        this.speed = speed;
+        
+        direction = new Vector3f(0, 0, 1);
+        Quaternion q = new Quaternion(0, angle, 0, 0);
+        direction = q.mult(direction);
+        
+        Vector3f movement = new Vector3f(direction);
+        movement.mult(speed);
+        
     }
     
-    public float getX() {
-        return this.x;
-    }
-    public float getZ() {
-        return this.z;
-    }
-    public float getSpeedX() {
-        return this.speedX;
-    }
-    public float getSpeedZ() {
-        return this.speedZ;
+    public int getDamage() {
+        return this.damage;
     }
     
     public void update(float tpf) {
-       this.x += speedX * tpf;
-       this.z += speedZ * tpf;
-       
-       //check collisions
        
     }
     
