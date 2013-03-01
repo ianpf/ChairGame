@@ -3,9 +3,11 @@ package mygame;
 import chair.input.XboxController;
 import chair.input.XboxInputListener;
 import com.jme3.asset.AssetManager;
+import com.jme3.bounding.BoundingBox;
 import com.jme3.bullet.PhysicsSpace;
 import com.jme3.bullet.collision.PhysicsCollisionEvent;
 import com.jme3.bullet.collision.PhysicsCollisionListener;
+import com.jme3.bullet.collision.shapes.BoxCollisionShape;
 import com.jme3.bullet.objects.PhysicsRigidBody;
 import com.jme3.input.InputManager;
 import com.jme3.math.Vector3f;
@@ -38,7 +40,14 @@ public class Level implements PhysicsCollisionListener {
         XboxInputListener controllerListener = new XboxInputListener(input);
         Spatial chairSpatial = 
                 assetManager.loadModel("Models/Angry Chair/Angry Chair.j3o");
-        PhysicsRigidBody chairBody = new PhysicsRigidBody();
+        rootNode.attachChild(chairSpatial);
+        Vector3f chairHalfExtent = 
+                ((BoundingBox) chairSpatial.getWorldBound())
+                    .getExtent(new Vector3f());
+        chairHalfExtent = chairHalfExtent.mult(0.5f);
+        PhysicsRigidBody chairBody = new PhysicsRigidBody(
+                new BoxCollisionShape(chairHalfExtent));
+        physicsSpace.addCollisionObject(chairBody);
         
         OfficeChair chair= new OfficeChair(
                 this, 
@@ -48,8 +57,7 @@ public class Level implements PhysicsCollisionListener {
                 chairSpatial,
                 chairBody);
         
-        rootNode.attachChild(chairSpatial);
-        physicsSpace.addCollisionObject(chairBody);
+        
     }
     
     
