@@ -3,10 +3,16 @@ package mygame;
 import chair.input.*;
 import com.jme3.asset.AssetManager;
 import com.jme3.input.InputManager;
+import com.jme3.material.Material;
+import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector2f;
+import com.jme3.math.Vector3f;
+import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
+import com.jme3.scene.shape.Box;
 import java.util.LinkedList;
+import java.util.Random;
 
 /**
  *
@@ -17,7 +23,8 @@ public class Level {
     Node rootNode;
     AssetManager assetManager;
     InputManager inputManager;
-    LinkedList<GameObject> allObjects;
+    LinkedList<MoveableGameObject> moveableObjects;
+    LinkedList<StaticGameObject> staticObjects;
  
     //Remove these from PhysicsSpace at the beginning of an update.
     LinkedList<GameObject> killUs;
@@ -28,18 +35,65 @@ public class Level {
         assetManager = assets;
         inputManager = input;
         killUs = new LinkedList<GameObject>();
-        allObjects = new LinkedList<GameObject>();
+        moveableObjects = new LinkedList<MoveableGameObject>();
+        staticObjects = new LinkedList<StaticGameObject>();
         
         InputListener controllerListener = new XboxInputListener(input);
-        float temp = 0;
         for(InputController controller : controllerListener.getInputControllers())
         {
-            temp += 10;
-            Spatial chairSpatial = assetManager.loadModel("Models/Angry Chair/Angry Chair.j3o");
+            Random rand = new Random();
+            rand.setSeed(System.currentTimeMillis());
+            String modelID = OfficeChair.models[rand.nextInt(OfficeChair.models.length)];
+            Spatial chairSpatial = assetManager.loadModel(modelID);
             rootNode.attachChild(chairSpatial);
-            OfficeChair chair = new OfficeChair(this, new Vector2f(temp, 0.0f), 0.0f, controller, chairSpatial);
-            this.allObjects.add(chair);
+            OfficeChair chair = new OfficeChair(this, new Vector2f(-5f, 0.0f), 0.0f, controller, chairSpatial);
+            this.moveableObjects.add(chair);
         }
+        
+        Vector3f min = new Vector3f(-21.0f, 0.0f, -21.0f);
+        Vector3f max = new Vector3f(-20.0f, 3.0f, 21.0f);
+        Box b = new Box(min, max);
+        Geometry g = new Geometry("Box Left", b);
+        Material mat = new Material(assetManager, 
+                "Common/MatDefs/Misc/Unshaded.j3md");
+        mat.setColor("Color", ColorRGBA.LightGray);
+        g.setMaterial(mat);
+        Wall wall = new Wall(g, -21.0f, -21.0f, 1.0f, 42.0f);
+        this.staticObjects.add(wall);
+        rootNode.attachChild(g);
+        min = new Vector3f(-20.0f, 0.0f, 20.0f);
+        max = new Vector3f(20.0f, 3.0f, 21.0f);
+        b = new Box(min, max);
+        g = (new Geometry("Box Top", b));
+        g.setMaterial(mat);
+        wall = new Wall(g, -20.0f, 20.0f, 40.0f, 1.0f);
+        this.staticObjects.add(wall);
+        rootNode.attachChild(g);
+        min = new Vector3f(20.0f, 0.0f, -21.0f);
+        max = new Vector3f(21.0f, 3.0f, 21.0f);
+        b = new Box(min, max);
+        g = (new Geometry("Box Right", b));
+        g.setMaterial(mat);
+        wall = new Wall(g, 20.0f, -21.0f, 1.0f, 42.0f);
+        this.staticObjects.add(wall);
+        rootNode.attachChild(g);
+        min = new Vector3f(-20.0f, 0.0f, -21.0f);
+        max = new Vector3f(20.0f, 3.0f, -20.0f);
+        b = new Box(min, max);
+        g = (new Geometry("Box Bottom", b));
+        g.setMaterial(mat);
+        wall = new Wall(g, -20.0f, -21.0f, 40.0f, 1.0f);
+        this.staticObjects.add(wall);
+        rootNode.attachChild(g);
+        min = new Vector3f(-21.0f, -1.0f, -21.0f);
+        max = new Vector3f(21.0f, 0.0f, 21.0f);
+        b = new Box(min, max);
+        g = (new Geometry("Box Bottom", b));
+        mat.setColor("Color", ColorRGBA.Gray);
+        g.setMaterial(mat);
+        wall = new Wall(g, -21.0f, -21.0f, 0.0f, 0.0f);
+        this.staticObjects.add(wall);
+        rootNode.attachChild(g);
         
     }
     
@@ -49,7 +103,11 @@ public class Level {
      * @param shot
      */
     public void spawnProjectile(Projectile shot){
-        //This will do stuff.
+        //Should have a pool for these. Fuck it, we'll deal with that if we have issues
+        Spatial shotSpatial = assetManager.loadModel("Models/marker/marker.j3o");
+        shot.setSpatial(shotSpatial);
+        moveableObjects.add(shot);
+        rootNode.attachChild(shotSpatial);
     }
     
     /**
@@ -61,6 +119,24 @@ public class Level {
     }
     
     /**
+     * Damages all GameActors in bounds except for immune.
+     * 
+     * @param immune
+     * @param bounds
+     * @param damage 
+     */
+    public void damageAllInRect(GameActor immune, RectF bounds, int damage){
+        for (MoveableGameObject g : moveableObjects){
+            if (g != immune && g.boundingCircle.collidesWithRect(bounds, false)){
+                if (g.type == GameObjectType.ACTOR){
+                    ((GameActor) g).takeDamage(damage);
+                }
+            }
+        }
+    }
+    
+    
+    /**
      *
      * @param tpf
      */
@@ -69,22 +145,35 @@ public class Level {
             switch (g.type){
                 case ACTOR: 
                     rootNode.detachChild(g.objectModel);
+                    moveableObjects.remove((MoveableGameObject) g);
                     break;
                 case PROJECTILE:
+                    moveableObjects.remove((MoveableGameObject) g);
                     break;
                 case OBSTACLE:
                     break;
                 default:
             }
-            allObjects.remove(g);
             killUs.remove(g);
         }
-        for(GameObject g: allObjects){
+        for(MoveableGameObject g: moveableObjects){
             g.update(tpf);
+
+            for (MoveableGameObject g2: moveableObjects){
+                if (g != g2){
+                    g.boundingCircle.collidesWithCircle(g2.boundingCircle);
+                }
+            }
+            
+            for (StaticGameObject g2: staticObjects){
+                System.out.println(g.boundingCircle.collidesWithRect(g2.boundingRect));
+            }
+/*
             OfficeChair a = (OfficeChair)allObjects.get(0);
             OfficeChair b = (OfficeChair)allObjects.get(1);
             if (a.getBoundingCircle().collidesWithCircle(b.getBoundingCircle(), true))
                 System.out.println("Fuck yeah");
+*/
         }
     }
     

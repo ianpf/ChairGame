@@ -32,22 +32,22 @@ public class CircleF {
 	}
 	
 	public boolean collidesWithCircle(CircleF target) {
-		return collidesWithCircle(target, false);
+		return collidesWithCircle(target, true);
 	}
 	public boolean collidesWithCircle(CircleF target, boolean resolve) {
-		Vector2f displacement = target.getPosition().subtract(itsPosition).normalize();
+		Vector2f displacement = itsPosition.subtract(target.getPosition()).normalize();
 		float distance = itsPosition.distance(target.getPosition());
-		float overshoot = distance - itsRadius - target.getRadius();
+		float overshoot = distance - (itsRadius + target.getRadius());
 		if (overshoot < 0) {
 			if (resolve) {
-				itsPosition = itsPosition.add(displacement.mult(itsRadius + target.getRadius()));
+				itsPosition = target.getPosition().add(displacement.mult(itsRadius + target.getRadius()));
 			}
 			return true;
 		}
 		return false;
 	}
 	public boolean collidesWithRect(RectF target) {
-		return collidesWithRect(target, false);
+		return collidesWithRect(target, true);
 	}
 	public boolean collidesWithRect(RectF target, boolean resolve) {
 		float x = itsPosition.getX();
@@ -71,13 +71,13 @@ public class CircleF {
 			}
 		}
 		if ((x > target.getLeft()) && (x < target.getRight())) {
-			if ((bottom < target.getTop()) && (bottom > target.getLeft())) {
+			if ((bottom < target.getTop()) && (bottom > target.getBottom())) {
 				if (resolve) {
 					itsPosition.setY(itsPosition.getY() + (target.getTop() - bottom));
 				}
 				return true;
 			}
-			if ((top < target.getTop()) && (top > target.getLeft())) {
+			if ((top < target.getTop()) && (top > target.getBottom())) {
 				if (resolve) {
 					itsPosition.setY(itsPosition.getY() + (target.getBottom() - top));
 				}
