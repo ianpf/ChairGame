@@ -60,11 +60,15 @@ public class OfficeChair extends GameActor {
     }
 
     public void primaryAttack() {
-        this.playerWeapon.usePrimary();
+        if (this.playerWeapon != null) {
+            this.playerWeapon.usePrimary();
+        }
     }
 
     public void secondaryAttack() {
-        this.playerWeapon.useSecondary();
+        if (this.playerWeapon != null) {
+            this.playerWeapon.useSecondary();
+        }
     }
 
     public void takeDamage(int damage) {

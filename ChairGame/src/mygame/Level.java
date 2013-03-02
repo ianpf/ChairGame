@@ -169,8 +169,8 @@ public class Level {
                     break;
                 default:
             }
-            killUs.remove(g);
         }
+        killUs.removeAll(killUs);
         for(Projectile p : spawnUs){
             moveableObjects.add(p);
             rootNode.attachChild(p.objectModel);
@@ -184,8 +184,9 @@ public class Level {
                     if (g.boundingCircle.collidesWithCircle(g2.boundingCircle)) {
                         if (g.type == GameObjectType.PROJECTILE &&
                                 ((GameObject)((Projectile) g).getOwner()) != g2){
-                            rootNode.detachChild(g.objectModel);
-                            moveableObjects.remove((MoveableGameObject) g);
+                            if (g2.type == GameObjectType.ACTOR)
+                                 ((GameActor)g2).takeDamage(((Projectile)g).getDamage());
+                            killUs.add(g);
                         }
                     }
                 }
@@ -194,8 +195,7 @@ public class Level {
             for (StaticGameObject g2: staticObjects){
                 if (g.boundingCircle.collidesWithRect(g2.boundingRect)) {
                     if (g.type == GameObjectType.PROJECTILE ){
-                        rootNode.detachChild(g.objectModel);
-                        moveableObjects.remove((MoveableGameObject) g);
+                        killUs.add(g);
                     }
                 }
             }

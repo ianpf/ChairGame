@@ -33,10 +33,14 @@ public class Weapon {
     }
     
     public void usePrimary() {
-        this.primaryAttack.use();
+        if (this.primaryAttack != null) {
+            this.primaryAttack.use();
+        }
     }
     public void useSecondary() {
-        this.secondaryAttack.use();
+        if (this.secondaryAttack != null) {
+            this.secondaryAttack.use();
+        }
     }
     
 }

@@ -19,13 +19,14 @@ public class ProjectileWeaponAttack extends WeaponAttack {
     
     public ProjectileWeaponAttack(Weapon weapon) {
         super(weapon);
+        damage = 10;
     }
     
     public void update(float tpf) {
         
     }
     public void use() {
-        Vector3f vel = new Vector3f(0, 0, -2);
+        Vector3f vel = new Vector3f(0, 0, -15);
         
         float angle = getWeapon().getOwner().getAngle();
         float[] angles = {0, angle, 0};

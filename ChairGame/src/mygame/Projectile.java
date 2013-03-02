@@ -22,12 +22,23 @@ public class Projectile extends MoveableGameObject {
     private Vector2f direction;
     
     public Projectile(OfficeChair owner, Vector2f location, Vector2f velocity, int damage) {
-        super(new CircleF(location, 0.5f));
+        super(new CircleF(location.add(location.normalize().mult(2)), 0.5f));
+        //super(new CircleF(location, 0.5f));
         this.owner = owner;
         this.type = GameObjectType.PROJECTILE;
         this.velocity = velocity;
         this.damage = damage;
-            
+        
+        
+    }
+    
+    @Override
+    public void setSpatial(Spatial spatial) {
+        super.setSpatial(spatial);
+        float angle = getOwner().getAngle();
+        float[] angles = {0, angle, 0};
+        Quaternion rot = new Quaternion(angles);
+        this.objectModel.setLocalRotation(rot);// = rot.mult(vel);
     }
     
     public OfficeChair getOwner() {
