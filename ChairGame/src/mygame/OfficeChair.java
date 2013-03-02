@@ -23,7 +23,7 @@ public class OfficeChair extends GameActor {
         "Models/cowboyChair/cowboyChair.j3o",
         "Models/fezzChair/fezzChair.j3o",
         "Models/fruityChair/fruityChair.j3o",
-        "Models/partyChair/partyChair.j3o",
+        "Models/partyChair/partyChair.j3o"
     };
     
     public OfficeChair(Level gameLevel, Vector2f startPosition, float angle,
