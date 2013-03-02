@@ -14,11 +14,6 @@ public abstract class GameObject {
     protected Spatial objectModel;
     protected GameObjectType type;
     
-    void moveToLocation(Vector3f newLocation){
-        objectModel.setLocalTranslation(
-                objectModel.worldToLocal(newLocation, new Vector3f()));
-    }
-	
 	
     abstract void update(float tpf);
     
