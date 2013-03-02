@@ -28,7 +28,7 @@ public class Main extends SimpleApplication
 {
     XboxInputListener il;
     public static Level l;
-    static boolean startLevel;
+    static boolean startLevel = false;
     
     public static void main(String[] args) {
         Main app = new Main();
