@@ -19,7 +19,7 @@ import java.util.LinkedList;
  *
  * @author Charlie
  */
-public class Level implements PhysicsCollisionListener {
+public class Level {
     
     Node rootNode;
     AssetManager assetManager;
