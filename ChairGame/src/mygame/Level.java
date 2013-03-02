@@ -4,8 +4,11 @@ import chair.input.*;
 import com.jme3.asset.AssetManager;
 import com.jme3.input.InputManager;
 import com.jme3.math.Vector2f;
+import com.jme3.math.Vector3f;
+import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
+import com.jme3.scene.shape.Box;
 import java.util.LinkedList;
 
 /**
@@ -17,7 +20,8 @@ public class Level {
     Node rootNode;
     AssetManager assetManager;
     InputManager inputManager;
-    LinkedList<GameObject> allObjects;
+    LinkedList<MoveableGameObject> moveableObjects;
+    LinkedList<GameObject> staticObjects;
  
     //Remove these from PhysicsSpace at the beginning of an update.
     LinkedList<GameObject> killUs;
@@ -28,7 +32,7 @@ public class Level {
         assetManager = assets;
         inputManager = input;
         killUs = new LinkedList<GameObject>();
-        allObjects = new LinkedList<GameObject>();
+        moveableObjects = new LinkedList<MoveableGameObject>();
         
         InputListener controllerListener = new XboxInputListener(input);
         Spatial chairSpatial = 
@@ -40,7 +44,7 @@ public class Level {
                 0.0f, 
                 controllerListener.getInputControllers()[0], 
                 chairSpatial);
-                this.allObjects.add(chair);
+                this.moveableObjects.add(chair);
                 
         chairSpatial = 
                 assetManager.loadModel("Models/fezzChair/fezzChair.j30");
@@ -51,7 +55,32 @@ public class Level {
                 0.0f, 
                 (InputController) controllerListener.getInputControllers()[1], 
                 chairSpatial);
-                this.allObjects.add(chair);
+                this.moveableObjects.add(chair);
+        
+        Vector3f min = new Vector3f(-21.0f, 0.0f, -21.0f);
+        Vector3f max = new Vector3f(-20.0f, 3.0f, 21.0f);
+        Box b = new Box(min, max);
+        Geometry g = new Geometry("Box Left", b);
+        Wall wall = new Wall(g, -21.0f, -21.0f, 1.0f, 42.0f);
+        this.staticObjects.add(wall);
+        min = new Vector3f(-20.0f, 0.0f, 20.0f);
+        max = new Vector3f(20.0f, 3.0f, 21.0f);
+        b = new Box(min, max);
+        g = (new Geometry("Box Top", b));
+        wall = new Wall(g, -20.0f, 20.0f, 40.0f, 1.0f);
+        this.staticObjects.add(wall);
+        min = new Vector3f(20.0f, 0.0f, -21.0f);
+        max = new Vector3f(21.0f, 3.0f, 21.0f);
+        b = new Box(min, max);
+        g = (new Geometry("Box Right", b));
+        wall = new Wall(g, 20.0f, -21.0f, 1.0f, 42.0f);
+        this.staticObjects.add(wall);
+        min = new Vector3f(-20.0f, 0.0f, -21.0f);
+        max = new Vector3f(20.0f, 3.0f, -20.0f);
+        b = new Box(min, max);
+        g = (new Geometry("Box Bottom", b));
+        wall = new Wall(g, -20.0f, -21.0f, 40.0f, 1.0f);
+        this.staticObjects.add(wall);
         
     }
     
@@ -72,6 +101,7 @@ public class Level {
         killUs.add(requestor);
     }
     
+    
     /**
      *
      * @param tpf
@@ -81,18 +111,27 @@ public class Level {
             switch (g.type){
                 case ACTOR: 
                     rootNode.detachChild(g.objectModel);
+                    moveableObjects.remove((MoveableGameObject) g);
                     break;
                 case PROJECTILE:
+                    moveableObjects.remove((MoveableGameObject) g);
                     break;
                 case OBSTACLE:
                     break;
                 default:
             }
-            allObjects.remove(g);
             killUs.remove(g);
         }
-        for(GameObject g: allObjects){
+        for(MoveableGameObject g: moveableObjects){
             g.update(tpf);
+            for (MoveableGameObject g2: moveableObjects){
+                if (g != g2){
+                    g.boundingCircle.collidesWithCircle(g2.boundingCircle));
+                }
+            }
+            for (GameObject g2: staticObjects){
+                g.boundingCircle.collidesWithRect(g2.boundingRect);
+            }
         }
     }
     
