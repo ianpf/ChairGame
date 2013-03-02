@@ -31,27 +31,14 @@ public class Level {
         allObjects = new LinkedList<GameObject>();
         
         InputListener controllerListener = new XboxInputListener(input);
-        Spatial chairSpatial = 
-                assetManager.loadModel("Models/Angry Chair/Angry Chair.j3o");
-        rootNode.attachChild(chairSpatial);        
-        OfficeChair chair= new OfficeChair(
-                this, 
-                new Vector2f(0.0f, 0.0f),
-                0.0f, 
-                controllerListener.getInputControllers()[0], 
-                chairSpatial);
-                this.allObjects.add(chair);
-                
-        chairSpatial = 
-                assetManager.loadModel("Models/fezzChair/fezzChair.j3o");
-        rootNode.attachChild(chairSpatial); //Second chair.
-        chair = new OfficeChair(
-                this, 
-                new Vector2f(0.0f, 10.0f),
-                0.0f, 
-                (InputController) controllerListener.getInputControllers()[1], 
-                chairSpatial);
-                this.allObjects.add(chair);
+        
+        for(InputController controller : controllerListener.getInputControllers())
+        {
+            Spatial chairSpatial = assetManager.loadModel("Models/Angry Chair/Angry Chair.j3o");
+            rootNode.attachChild(chairSpatial);
+            OfficeChair chair = new OfficeChair(this, new Vector2f(0.0f, 0.0f), 0.0f, controller, chairSpatial);
+            this.allObjects.add(chair);
+        }
         
     }
     
