@@ -60,7 +60,6 @@ public class OfficeChair extends GameActor {
         Vector3f directionVector = playerInput.getLeftAxisVector();
         this.velocity.x = directionVector.getX();
         this.velocity.y = directionVector.getZ();
-        System.out.println("Fuck you");
     }
 
     int getHealth() {

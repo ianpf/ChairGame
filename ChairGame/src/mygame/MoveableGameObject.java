@@ -21,5 +21,9 @@ public abstract class MoveableGameObject extends GameObject {
                 //System.out.println(boundingCircle.getPosition().getX() + " " + boundingCircle.getPosition().getY() + "\n");
                //System.out.println(this.objectModel.getLocalTranslation().getX() + " " + this.objectModel.getLocalTranslation().getY() + "\n");
 	}
+        
+        public CircleF getBoundingCircle() {
+            return boundingCircle;
+        }
 	
 }
