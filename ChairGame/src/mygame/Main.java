@@ -71,7 +71,7 @@ public class Main extends SimpleApplication
         setDisplayStatView(false);
         setDisplayFps(false);
         
-        GameCredits.creds = new GameCredits(audioRenderer, assetManager, inputManager, guiViewPort);
+       // GameCredits.creds = new GameCredits(audioRenderer, assetManager, inputManager, guiViewPort);
         
         loadMainMenu();
 
