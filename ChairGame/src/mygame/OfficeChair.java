@@ -35,6 +35,7 @@ public class OfficeChair extends GameActor {
         this.angle = angle;
         this.gameLevel = gameLevel;
         this.playerInput = playerInput;
+        this.playerWeapon = new Weapon(this, "", null, null);
     }
     
     public float getAngle(){
@@ -62,6 +63,7 @@ public class OfficeChair extends GameActor {
 
     public void takeDamage(int damage) {
         health -= damage;
+        System.out.println("Health: " + this.getHealth());
     }
 
     // Get the health of the player
