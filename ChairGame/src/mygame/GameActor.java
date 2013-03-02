@@ -8,7 +8,14 @@ package mygame;
  *
  * @author Ian
  */
-public abstract class GameActor extends GameObject {
+public abstract class GameActor extends MoveableGameObject {
 
     public abstract void takeDamage(int damage);
+    public GameActor(CircleF circle){
+        super(circle);
+    }
+    public void update(float tpf)
+    {
+        super.update(tpf);
+    }
 }

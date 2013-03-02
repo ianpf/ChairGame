@@ -171,6 +171,7 @@ public class XboxController extends InputController
     
     public void setDirRight()
     {
+        isDirRight = true;
     }
     
     public boolean isStart()
@@ -182,6 +183,11 @@ public class XboxController extends InputController
         return res;
     }
     
+    public void setStart()
+    {
+        isStart = true;
+    }
+    
     public boolean isBack()
     {
         boolean res = isBack;
@@ -189,6 +195,11 @@ public class XboxController extends InputController
         isBack = false;
         
         return res;
+    }
+    
+    public void setBack()
+    {
+        isBack = true;
     }
     
     public boolean isLSButton()
@@ -200,6 +211,11 @@ public class XboxController extends InputController
         return res;
     }
     
+    public void setLSButton()
+    {
+        isLSButton = true;
+    }
+    
     public boolean isRSButton()
     {
         boolean res = isRSButton;
@@ -207,6 +223,11 @@ public class XboxController extends InputController
         isRSButton = false;
         
         return res;
+    }
+    
+    public void setRSButton()
+    {
+        isRSButton = true;
     }
     
     public boolean isLeftBumper()
@@ -218,6 +239,11 @@ public class XboxController extends InputController
         return res;
     }
     
+    public void setLeftBumper()
+    {
+        isLeftBumper = true;
+    }
+    
     public boolean isRightBumper()
     {
         boolean res = isRightBumper;
@@ -225,6 +251,11 @@ public class XboxController extends InputController
         isRightBumper = false;
         
         return res;
+    }
+    
+    public void setRightBumper()
+    {
+        isRightBumper = true;
     }
     
     public boolean isXBoxButton()
@@ -236,6 +267,11 @@ public class XboxController extends InputController
         return res;
     }
     
+    public void setXBoxButton()
+    {
+        isXBoxButton = true;
+    }
+    
     public boolean isA_Button()
     {
         boolean res = isA_Button;
@@ -243,6 +279,11 @@ public class XboxController extends InputController
         isA_Button = false;
         
         return res;
+    }
+    
+    public void setA_Button()
+    {
+        isA_Button = true;
     }
     
     public boolean isB_Button()
@@ -254,6 +295,11 @@ public class XboxController extends InputController
         return res;
     }
     
+    public void setB_Button()
+    {
+        isB_Button = true;
+    }
+    
     public boolean isX_Button()
     {
         boolean res = isX_Button;
@@ -263,6 +309,11 @@ public class XboxController extends InputController
         return res;
     }
     
+    public void setX_Button()
+    {
+        isX_Button = true;
+    }
+    
     public boolean isY_Button()
     {
         boolean res = isY_Button;
@@ -270,5 +321,10 @@ public class XboxController extends InputController
         isY_Button = false;
         
         return res;
+    }
+    
+    public void setY_Button()
+    {
+        isY_Button = true;
     }
 }

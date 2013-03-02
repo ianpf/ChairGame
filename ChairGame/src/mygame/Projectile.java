@@ -32,9 +32,7 @@ public class Projectile extends GameObject {
         
         Vector3f movement = new Vector3f(direction);
         movement.mult(speed);
-        
-        rigidBody.setLinearVelocity(movement);
-        
+                
     }
     
     public int getDamage() {

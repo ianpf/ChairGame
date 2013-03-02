@@ -1,5 +1,6 @@
 package mygame;
 
+import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
 import chair.input.*;
 import com.jme3.scene.Spatial;
@@ -9,29 +10,21 @@ import com.jme3.bullet.objects.PhysicsRigidBody;
  * @author Ian Fisher
  */
 public class OfficeChair extends GameActor {
+    
     private float angle;
     private int health = 100;
-    private Vector3f position = new Vector3f();
     private Level gameLevel;
     private Weapon playerWeapon;
     private InputController playerInput;
-    private float maxSpeed = 0.1f;
-
-    public OfficeChair(Level gameLevel, Vector3f startPosition, float angle,
-            InputController playerInput, Spatial objectModel, PhysicsRigidBody
-                    rigidBody) {
+    public OfficeChair(Level gameLevel, Vector2f startPosition, float angle,
+            InputController playerInput, Spatial objectModel) {
+        super(new CircleF(startPosition, 1));
         this.type = GameObjectType.ACTOR;
         this.health = health;
-        this.rigidBody = rigidBody;
         this.objectModel = objectModel;
         this.angle = angle;
-        this.position = startPosition;
         this.gameLevel = gameLevel;
         this.playerInput = playerInput;
-    }
-    
-    public Vector3f getPosition(){
-        return position;
     }
     
     public float getAngle(){
@@ -43,10 +36,6 @@ public class OfficeChair extends GameActor {
     }
     
     public void onCollision(GameObject object) {
-    }
-
-    public void movement(Vector3f movementInput) {
-        rigidBody.setLinearVelocity(movementInput);
     }
 
     public void setWeapon(Weapon playerWeaponTemp) {
@@ -66,13 +55,12 @@ public class OfficeChair extends GameActor {
     }
 
     // Get the health of the player
-    void update(float tpf) {
-        Vector3f mult = playerInput.getLeftAxisVector().mult(maxSpeed);
-        System.out.println(mult.x + " " + mult.y + " " + mult.z);
-        this.movement(playerInput.getLeftAxisVector().mult(maxSpeed));
-        Vector3f local = this.objectModel.worldToLocal(this.rigidBody.getPhysicsLocation(), new Vector3f());
-        this.objectModel.setLocalTranslation(local);
-        angle = playerInput.getRightAxisDirection();
+    public void update(float tpf) {
+        super.update(tpf);
+        Vector3f directionVector = playerInput.getLeftAxisVector();
+        this.velocity.x = directionVector.getX();
+        this.velocity.y = directionVector.getZ();
+        System.out.println("Fuck you");
     }
 
     int getHealth() {

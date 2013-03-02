@@ -1,9 +1,6 @@
 package mygame;
 
-import chair.input.InputController;
-import chair.input.InputListener;
-import chair.input.KeyboardInputListener;
-import chair.input.XboxInputListener;
+import chair.input.*;
 import com.jme3.app.SimpleApplication;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.input.RawInputListener;
@@ -28,11 +25,12 @@ import mygame.GameMenuHUD;
  */
 public class Main extends SimpleApplication
 {
-//    XboxInputListener il;
+
     public static Level l;
     static boolean startLevel = false;
     
     InputListener il;
+
 
     public static void main(String[] args) {
         Main app = new Main();
@@ -65,6 +63,7 @@ public class Main extends SimpleApplication
         setDisplayFps(false);
         
         loadMainMenu();
+
         il = new KeyboardInputListener(inputManager);
     }
     
@@ -78,15 +77,13 @@ public class Main extends SimpleApplication
             l = new Level(rootNode, assetManager, inputManager);
             startLevel = false;
         }
-        if(l != null)
-        {
+        if(l != null){
             l.update(tpf);
         }
 
         //InputController controller = il.getInputControllers()[0];
         //controller.getLeftAxisDirection();
         //System.out.println("LS Angle = " + controller.getLeftAxisDirection() + " LS Power =" + controller.getLeftAxisPower());
-
         //System.out.println("RS Angle = " + controller.getRightAxisDirection() + " RS Power =" + controller.getRightAxisPower());
     }
 

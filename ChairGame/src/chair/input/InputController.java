@@ -5,6 +5,7 @@
 package chair.input;
 
 import com.jme3.input.Joystick;
+import com.jme3.math.Vector3f;
 
 /**
  *
@@ -33,6 +34,7 @@ public abstract class InputController
         return this.joystick;
     }
     
+    public abstract Vector3f getLeftAxisVector();
     public void setLeftXAxis(float x)
     {
         if(x < InputListener.INPUT_THRESHOLD && x > -InputListener.INPUT_THRESHOLD)
