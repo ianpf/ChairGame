@@ -31,7 +31,7 @@ public class ProjectileWeaponAttack extends WeaponAttack {
         float[] angles = {0, angle, 0};
         Quaternion rot = new Quaternion(angles);
         vel = rot.mult(vel);
-        Projectile shot = new Projectile(getWeapon().getOwner().getBoundingCircle().getPosition(), new Vector2f(vel.getX(), vel.getZ()), damage);
+        Projectile shot = new Projectile(getWeapon().getOwner(), getWeapon().getOwner().getBoundingCircle().getPosition(), new Vector2f(vel.getX(), vel.getZ()), damage);
         getWeapon().getOwner().getLevel().spawnProjectile(shot);
         System.out.println("SHOT");
     }
