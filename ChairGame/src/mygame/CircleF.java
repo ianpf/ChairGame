@@ -34,11 +34,20 @@ public class CircleF {
 	public boolean collidesWithCircle(CircleF target) {
 		return collidesWithCircle(target, false);
 	}
-	public boolean collidesWithCircle(CircleF target) {
-		return itsPosition.distance(target.getPosition()) < (itsRadius + target.getRadius());
+	public boolean collidesWithCircle(CircleF target, boolean resolve) {
+		Vector2f displacement = target.getPosition().subtract(itsPosition).normalize();
+		float distance = itsPosition.distance(target.getPosition());
+		float overshoot = distance - itsRadius - target.getRadius();
+		if (overshoot < 0) {
+			if (resolve) {
+				itsPosition = itsPosition.add(displacement.mult(itsRadius + target.getRadius()));
+			}
+			return true;
+		}
+		return false;
 	}
 	public boolean collidesWithRect(RectF target) {
-		collidesWithRect(target, false);
+		return collidesWithRect(target, false);
 	}
 	public boolean collidesWithRect(RectF target, boolean resolve) {
 		float x = itsPosition.getX();
