@@ -119,7 +119,7 @@ public class Level {
      */
     public void spawnProjectile(Projectile shot){
         //Should have a pool for these. Fuck it, we'll deal with that if we have issues
-        Spatial shotSpatial = assetManager.loadModel("Models/marker/marker.j3o");
+        Spatial shotSpatial = assetManager.loadModel("Models/rule/rule.j3o");
         shot.setSpatial(shotSpatial);
         spawnUs.add(shot);
     }
