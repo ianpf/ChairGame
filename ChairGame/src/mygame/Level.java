@@ -11,7 +11,15 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
+import com.jme3.texture.Texture;
 import java.util.LinkedList;
+import com.jme3.material.Material;
+import com.jme3.math.ColorRGBA;
+import com.jme3.math.Vector3f;
+import com.jme3.scene.Geometry;
+import com.jme3.scene.shape.Box;
+
+
 
 /**
  *
@@ -47,18 +55,18 @@ public class Level {
         }
         
         Vector3f min = new Vector3f(-21.0f, 0.0f, -21.0f);
-        Vector3f max = new Vector3f(-20.0f, 3.0f, 21.0f);
+        Vector3f max = new Vector3f(-20.0f, 6.0f, 21.0f);
         Box b = new Box(min, max);
         Geometry g = new Geometry("Box Left", b);
         Material mat = new Material(assetManager, 
-                "Common/MatDefs/Misc/Unshaded.j3md");
-        mat.setColor("Color", ColorRGBA.Gray);
+                "Common/MatDefs/Light/Lighting.j3md");
+        mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/cubicle.jpg"));
         g.setMaterial(mat);
         Wall wall = new Wall(g, -21.0f, -21.0f, 1.0f, 42.0f);
         this.staticObjects.add(wall);
         rootNode.attachChild(g);
         min = new Vector3f(-20.0f, 0.0f, 20.0f);
-        max = new Vector3f(20.0f, 3.0f, 21.0f);
+        max = new Vector3f(20.0f, 6.0f, 21.0f);
         b = new Box(min, max);
         g = (new Geometry("Box Top", b));
         g.setMaterial(mat);
@@ -66,7 +74,7 @@ public class Level {
         this.staticObjects.add(wall);
         rootNode.attachChild(g);
         min = new Vector3f(20.0f, 0.0f, -21.0f);
-        max = new Vector3f(21.0f, 3.0f, 21.0f);
+        max = new Vector3f(21.0f, 6.0f, 21.0f);
         b = new Box(min, max);
         g = (new Geometry("Box Right", b));
         g.setMaterial(mat);
@@ -74,7 +82,7 @@ public class Level {
         this.staticObjects.add(wall);
         rootNode.attachChild(g);
         min = new Vector3f(-20.0f, 0.0f, -21.0f);
-        max = new Vector3f(20.0f, 3.0f, -20.0f);
+        max = new Vector3f(20.0f, 6.0f, -20.0f);
         b = new Box(min, max);
         g = (new Geometry("Box Bottom", b));
         g.setMaterial(mat);
@@ -85,9 +93,8 @@ public class Level {
         max = new Vector3f(21.0f, 0.0f, 21.0f);
         b = new Box(min, max);
         g = (new Geometry("Box Bottom", b));
-        mat = new Material(assetManager, 
-        "Common/MatDefs/Misc/Unshaded.j3md");
-        mat.setColor("Color", ColorRGBA.LightGray);
+        mat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
+        mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/buldwarehouseroof.jpg"));
         g.setMaterial(mat);
         wall = new Wall(g, -21.0f, -21.0f, 0.0f, 0.0f);
         this.staticObjects.add(wall);
