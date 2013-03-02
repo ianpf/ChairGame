@@ -33,8 +33,7 @@ public class Level {
         InputListener controllerListener = new XboxInputListener(input);
         Spatial chairSpatial = 
                 assetManager.loadModel("Models/Angry Chair/Angry Chair.j3o");
-        rootNode.attachChild(chairSpatial);
-        
+        rootNode.attachChild(chairSpatial);        
         OfficeChair chair= new OfficeChair(
                 this, 
                 new Vector2f(0.0f, 0.0f),
@@ -42,6 +41,18 @@ public class Level {
                 controllerListener.getInputControllers()[0], 
                 chairSpatial);
                 this.allObjects.add(chair);
+                
+        chairSpatial = 
+                assetManager.loadModel("Models/fezzChair/fezzChair.j30");
+        rootNode.attachChild(chairSpatial); //Second chair.
+        chair = new OfficeChair(
+                this, 
+                new Vector2f(0.0f, 10.0f),
+                0.0f, 
+                (InputController) controllerListener.getInputControllers()[1], 
+                chairSpatial);
+                this.allObjects.add(chair);
+        
     }
     
     
