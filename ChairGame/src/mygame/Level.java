@@ -102,6 +102,10 @@ public class Level {
         killUs.add(requestor);
     }
     
+    public void damageAllInRect(GameActor immune, RectF bounds, int damage){
+        
+    }
+    
     
     /**
      *
