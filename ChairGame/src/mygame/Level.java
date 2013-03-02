@@ -12,6 +12,7 @@ import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
 import java.util.LinkedList;
+import java.util.Random;
 
 /**
  *
@@ -40,7 +41,10 @@ public class Level {
         InputListener controllerListener = new XboxInputListener(input);
         for(InputController controller : controllerListener.getInputControllers())
         {
-            Spatial chairSpatial = assetManager.loadModel("Models/Angry Chair/Angry Chair.j3o");
+            Random rand = new Random();
+            rand.setSeed(System.currentTimeMillis());
+            String modelID = OfficeChair.models[rand.nextInt(OfficeChair.models.length)];
+            Spatial chairSpatial = assetManager.loadModel(modelID);
             rootNode.attachChild(chairSpatial);
             OfficeChair chair = new OfficeChair(this, new Vector2f(-5f, 0.0f), 0.0f, controller, chairSpatial);
             this.moveableObjects.add(chair);
