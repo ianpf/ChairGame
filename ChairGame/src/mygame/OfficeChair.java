@@ -27,6 +27,7 @@ public class OfficeChair extends GameActor {
         this.angle = angle;
         this.gameLevel = gameLevel;
         this.playerInput = playerInput;
+        playerWeapon = new Weapon(this, "", null, null);
     }
     
     public float getAngle(){
