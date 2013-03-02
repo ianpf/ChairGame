@@ -30,7 +30,7 @@ public class Level {
         killUs = new LinkedList<GameObject>();
         allObjects = new LinkedList<GameObject>();
         
-        InputListener controllerListener = new KeyboardInputListener(input);
+        InputListener controllerListener = new XboxInputListener(input);
         Spatial chairSpatial = 
                 assetManager.loadModel("Models/Angry Chair/Angry Chair.j3o");
         rootNode.attachChild(chairSpatial);        
@@ -38,7 +38,7 @@ public class Level {
                 this, 
                 new Vector2f(0.0f, 0.0f),
                 0.0f, 
-                (InputController) controllerListener.getInputControllers()[0], 
+                controllerListener.getInputControllers()[0], 
                 chairSpatial);
                 this.allObjects.add(chair);
                 
