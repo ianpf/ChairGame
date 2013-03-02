@@ -17,13 +17,12 @@ import com.jme3.math.Quaternion;
 import com.jme3.renderer.RenderManager;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.screen.Screen;
-import mygame.GameMenuHUD;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.shape.Box;
 import com.jme3.system.AppSettings;
-import com.jme3.math.Vector3f;
 import com.jme3.light.*;
-
+import com.jme3.math.Vector3f;
+import mygame.GameMenuHUD;
 /**
  * test
  *
@@ -34,9 +33,10 @@ public class Main extends SimpleApplication
 
     public static Level l;
     static boolean startLevel = false;
+    static boolean startCredits = false;
     
     InputListener il;
-
+    static Soundtrack s;
 
     public static void main(String[] args) {
         Main app = new Main();
@@ -49,6 +49,10 @@ public class Main extends SimpleApplication
     
     public static void startLevel(){
         startLevel = true;
+    }
+    
+    public static void loadCredits(){
+        
     }
     
     
@@ -68,6 +72,9 @@ public class Main extends SimpleApplication
     @Override
     public void simpleInitApp() {
 
+
+
+        
         setDisplayStatView(false);
         setDisplayFps(false);
         
@@ -76,11 +83,17 @@ public class Main extends SimpleApplication
         loadMainMenu();
 
         il = new XboxInputListener(inputManager);
+        
+        s = new Soundtrack(assetManager, rootNode, audioRenderer);
+        s.initAudio();
+        s.playSong(gameState);
     }
     
     
     
-
+    private Vector3f camMoveCredits = new Vector3f(0,2,0);
+    
+    
     @Override
     public void simpleUpdate(float tpf)
     {
@@ -93,14 +106,27 @@ public class Main extends SimpleApplication
             light.setColor(ColorRGBA.White.mult(1.3f));
             rootNode.addLight(light);
         }
+        
+        
+        if(startCredits){
+            flyCam.setEnabled(true);
+            
+            
+        }
+        
         if(l != null){
             l.update(tpf);
         }
 
+        s.playNewSong(gameState);
         //InputController controller = il.getInputControllers()[0];
         //controller.getLeftAxisDirection();
         //System.out.println("LS Angle = " + controller.getLeftAxisDirection() + " LS Power =" + controller.getLeftAxisPower());
         //System.out.println("RS Angle = " + controller.getRightAxisDirection() + " RS Power =" + controller.getRightAxisPower());
+    }
+    
+    public static void changeAudio() {
+        s.playSong(gameState);
     }
 
     @Override

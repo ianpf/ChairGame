@@ -61,7 +61,36 @@
 				</effect>
 			<text id="text" font="Interface/Fonts/Orbitron.fnt" color="#000F" text="Exit Game" align="center" valign="center" />
 		</panel>
-		 
+                
+                <panel id="SPACER" backgroundColor="#0000" height="30%" width="100%" align="center" childLayout="center" visibleToMouse="false">
+                </panel>
+		<text id="text" font="Interface/Fonts/Orbitron.fnt"  color="#FFFF" text="Thank you for playing." align="center" valign="center" />
+                <panel id="SPACER" backgroundColor="#0000" height="10%" width="100%" align="center" childLayout="center" visibleToMouse="false">
+                </panel>
+                <text id="text" font="Interface/Fonts/Orbitron.fnt"  color="#FFFF" text="Carrie de Way" align="center" valign="center" />
+                <panel id="SPACER" backgroundColor="#0000" height="10%" width="100%" align="center" childLayout="center" visibleToMouse="false">
+                </panel>
+                <text id="text" font="Interface/Fonts/Orbitron.fnt"  color="#FFFF" text="Ike Aramba" align="center" valign="center" />
+                <panel id="SPACER" backgroundColor="#0000" height="10%" width="100%" align="center" childLayout="center" visibleToMouse="false">
+                </panel>
+                <text id="text" font="Interface/Fonts/Orbitron.fnt"  color="#FFFF" text="poospoon" align="center" valign="center" />
+                <panel id="SPACER" backgroundColor="#0000" height="10%" width="100%" align="center" childLayout="center" visibleToMouse="false">
+                </panel>
+                <text id="text" font="Interface/Fonts/Orbitron.fnt"  color="#FFFF" text="StormtrooprDave" align="center" valign="center" />
+                <panel id="SPACER" backgroundColor="#0000" height="10%" width="100%" align="center" childLayout="center" visibleToMouse="false">
+                </panel>
+                <text id="text" font="Interface/Fonts/Orbitron.fnt"  color="#FFFF" text="?!?!?!" align="center" valign="center" />
+                <panel id="SPACER" backgroundColor="#0000" height="10%" width="100%" align="center" childLayout="center" visibleToMouse="false">
+                </panel>
+                <text id="text" font="Interface/Fonts/Orbitron.fnt"  color="#FFFF" text="RoflCopter" align="center" valign="center" />
+                <panel id="SPACER" backgroundColor="#0000" height="10%" width="100%" align="center" childLayout="center" visibleToMouse="false">
+                </panel>
+                <text id="text" font="Interface/Fonts/Orbitron.fnt"  color="#FFFF" text="oldspot" align="center" valign="center" />
+                <panel id="SPACER" backgroundColor="#0000" height="10%" width="100%" align="center" childLayout="center" visibleToMouse="false">
+                </panel>
+                <text id="text" font="Interface/Fonts/Orbitron.fnt"  color="#FFFF" text="Sputnik" align="center" valign="center" />
+                <panel id="SPACER" backgroundColor="#0000" height="10%" width="100%" align="center" childLayout="center" visibleToMouse="false">
+                </panel>
 		</layer>
  
 	</screen>
