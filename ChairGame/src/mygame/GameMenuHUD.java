@@ -44,7 +44,7 @@ public class GameMenuHUD implements ScreenController
     }
     
     public void gameCredits(){
-        GameCredits creds = new GameCredits(audioRenderer, assetManager, audioRenderer, guiViewPort);
+        //GameCredits creds = new GameCredits(audioRenderer, assetManager, audioRenderer, guiViewPort);
     }
     
     public void onStartScreen() {
