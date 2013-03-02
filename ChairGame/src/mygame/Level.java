@@ -169,8 +169,8 @@ public class Level {
                     break;
                 default:
             }
-            killUs.remove(g);
         }
+        killUs.removeAll(killUs);
         for(Projectile p : spawnUs){
             moveableObjects.add(p);
             rootNode.attachChild(p.objectModel);
