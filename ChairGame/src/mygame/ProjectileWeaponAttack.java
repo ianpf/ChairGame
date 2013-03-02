@@ -19,6 +19,7 @@ public class ProjectileWeaponAttack extends WeaponAttack {
     
     public ProjectileWeaponAttack(Weapon weapon) {
         super(weapon);
+        damage = 10;
     }
     
     public void update(float tpf) {
