@@ -20,6 +20,18 @@ import mygame.Main;
 
 public class GameMenuHUD implements ScreenController 
 {
+    private AudioRenderer audioRenderer;
+    private AssetManager assetManager;
+    private InputManager inputManager; 
+    private ViewPort guiViewPort;
+    
+    public GameMenuHUD (AudioRenderer ar, AssetManager am, InputManager im, ViewPort gvp){
+        audioRenderer = ar;
+        assetManager = am;
+        inputManager = im;
+        guiViewPort = gvp;
+    }
+    
     Nifty nifty;
 
     public void bind(Nifty nifty, Screen screen) {
@@ -33,7 +45,8 @@ public class GameMenuHUD implements ScreenController
     }
     
     public void gameCredits(){
-        //GameCredits creds = new GameCredits(audioRenderer, assetManager, audioRenderer, guiViewPort);
+        nifty.exit();
+        
     }
     
     public void onStartScreen() {
