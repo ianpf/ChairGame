@@ -79,13 +79,13 @@ public class XboxInputListener extends InputListener
 
     public void onJoyButtonEvent(JoyButtonEvent evt) 
     {
-        InputController ic = controllers[0];
+        XboxController ic = (XboxController) controllers[0];
         
         for(InputController c : controllers)
         {
             if(c.getControllerID() == evt.getJoyIndex())
             {
-                ic = c;
+                ic = (XboxController) c;
                 break;
             }
         }
@@ -93,34 +93,49 @@ public class XboxInputListener extends InputListener
         switch(evt.getButtonIndex())
         {
             case XboxController.DIR_UP:
+                ic.setDirUp();
                 break;
             case XboxController.DIR_DOWN:
+                ic.setDirDown();
                 break;
             case XboxController.DIR_LEFT:
+                ic.setDirLeft();
                 break;
             case XboxController.DIR_RIGHT:
+                ic.setDirRight();
                 break;
             case XboxController.START:
+                ic.setStart();
                 break;
             case XboxController.BACK:
+                ic.setBack();
                 break;
             case XboxController.LSBUTTON:
+                ic.setLSButton();
                 break;
             case XboxController.RSBUTTON:
+                ic.setRSButton();
                 break;
             case XboxController.LEFT_BUMPER:
+                ic.setLeftBumper();
                 break;
             case XboxController.RIGHT_BUMPER:
+                ic.setRightBumper();
                 break;
             case XboxController.XBOX_BUTTON:
+                ic.setXBoxButton();
                 break;
             case XboxController.A_BUTTON:
+                ic.setA_Button();
                 break;
             case XboxController.B_BUTTON:
+                ic.setB_Button();
                 break;
             case XboxController.X_BUTTON:
+                ic.setX_Button();
                 break;
             case XboxController.Y_BUTTON:
+                ic.setY_Button();
                 break;
             default:
         }
