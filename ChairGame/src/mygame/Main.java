@@ -3,6 +3,7 @@ package mygame;
 import chair.input.XboxInputListener;
 import chair.input.*;
 import com.jme3.app.SimpleApplication;
+import com.jme3.font.BitmapText;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.input.RawInputListener;
 import com.jme3.input.event.JoyAxisEvent;
@@ -34,6 +35,10 @@ public class Main extends SimpleApplication
     public static Level l;
     static boolean startLevel = false;
     static boolean startCredits = false;
+    private boolean hudTextNotSet = true;
+    static OfficeChair[] chairArray = new OfficeChair[4];
+    
+    private BitmapText[] hudTexts;
     
     InputListener il;
     static Soundtrack s;
@@ -53,6 +58,12 @@ public class Main extends SimpleApplication
     
     public static void loadCredits(){
         
+    }
+    
+    public static void setPlayers(OfficeChair[] officeChairs){
+        for (int i = 0; officeChairs[i] != null; i++){
+            chairArray[i] = officeChairs[i];
+        }
     }
     
     
@@ -87,6 +98,9 @@ public class Main extends SimpleApplication
         s = new Soundtrack(assetManager, rootNode, audioRenderer);
         s.initAudio();
         s.playSong(gameState);
+        
+        
+        
     }
     
     
@@ -98,6 +112,34 @@ public class Main extends SimpleApplication
     public void simpleUpdate(float tpf)
     {
         if(startLevel){
+            
+            //Set the HUD texts (run once).
+            for (int i = 0; i < chairArray.length && hudTextNotSet; i++){
+                hudTexts[i] = new BitmapText(guiFont, false);
+                hudTexts[i].setSize(guiFont.getCharSet().getRenderedSize());      // font size
+                hudTexts[i].setColor(ColorRGBA.Blue);                             // font color
+                hudTexts[i].setText("Player " + i + " Helf: " + chairArray[i].getHealth());             // the text
+                switch (i){
+                    case 0:
+                        hudTexts[i].setLocalTranslation(10, hudTexts[i].getLineHeight(), 0); // position
+                        break;
+                    case 1:
+                        hudTexts[i].setLocalTranslation(500, hudTexts[i].getLineHeight(), 0); // position
+                        break;
+                    case 4:
+                        hudTexts[i].setLocalTranslation(500, hudTexts[i].getLineHeight(), 0); // position
+                        break;
+                    case 3:
+                        hudTexts[i].setLocalTranslation(500, hudTexts[i].getLineHeight(), 0); // position
+                        break;
+                }
+                guiNode.attachChild(hudTexts[i]);
+            }
+            
+            //Update HUD stats.
+            for (int i = 0; i < chairArray.length; i++){
+                hudTexts[i].setText("Player " + i + " Helf: " + chairArray[i].getHealth());
+            }
             l = new Level(rootNode, assetManager, inputManager);
             startLevel = false;
             cam.setLocation(new Vector3f(0, 45, -40));
