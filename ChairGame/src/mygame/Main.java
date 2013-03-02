@@ -90,7 +90,7 @@ public class Main extends SimpleApplication
             cam.setLocation(new Vector3f(0, 45, -40));
             cam.lookAt(new Vector3f(0, 0, 5), new Vector3f(0, 1, 0));
             AmbientLight light = new AmbientLight();
-            light.setColor(ColorRGBA.White.mult(1.5f));
+            light.setColor(ColorRGBA.White.mult(1.f));
             rootNode.addLight(light);
         }
         if(l != null){
