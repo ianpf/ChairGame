@@ -38,13 +38,11 @@ public class Level {
         staticObjects = new LinkedList<StaticGameObject>();
         
         InputListener controllerListener = new XboxInputListener(input);
-        float temp = 0;
         for(InputController controller : controllerListener.getInputControllers())
         {
-            temp += 3;
             Spatial chairSpatial = assetManager.loadModel("Models/Angry Chair/Angry Chair.j3o");
             rootNode.attachChild(chairSpatial);
-            OfficeChair chair = new OfficeChair(this, new Vector2f(temp, 0.0f), 0.0f, controller, chairSpatial);
+            OfficeChair chair = new OfficeChair(this, new Vector2f(-5f, 0.0f), 0.0f, controller, chairSpatial);
             this.moveableObjects.add(chair);
         }
         
@@ -133,8 +131,9 @@ public class Level {
                     g.boundingCircle.collidesWithCircle(g2.boundingCircle);
                 }
             }
+            
             for (StaticGameObject g2: staticObjects){
-                g.boundingCircle.collidesWithRect(g2.boundingRect);
+                System.out.println(g.boundingCircle.collidesWithRect(g2.boundingRect));
             }
 /*
             OfficeChair a = (OfficeChair)allObjects.get(0);
