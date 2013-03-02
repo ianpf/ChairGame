@@ -62,6 +62,7 @@ public class Main extends SimpleApplication
         // disable the fly cam
         flyCam.setEnabled(false);
     }
+    
 
     @Override
     public void simpleInitApp() {
