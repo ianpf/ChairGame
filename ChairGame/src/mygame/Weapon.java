@@ -20,7 +20,7 @@ public class Weapon {
     public Weapon(OfficeChair owner, String name, WeaponAttack primaryAttack, WeaponAttack secondaryAttack) {
         this.owner = owner;
         this.name = name;
-        this.primaryAttack = primaryAttack;
+        this.primaryAttack = new ProjectileWeaponAttack(this);
         this.secondaryAttack = secondaryAttack;
         primaryAttack = new MeleeWeaponAttack(this);
     }
