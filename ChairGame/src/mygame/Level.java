@@ -193,8 +193,7 @@ public class Level {
             for (StaticGameObject g2: staticObjects){
                 if (g.boundingCircle.collidesWithRect(g2.boundingRect)) {
                     if (g.type == GameObjectType.PROJECTILE ){
-                        rootNode.detachChild(g.objectModel);
-                        moveableObjects.remove((MoveableGameObject) g);
+                        killUs.add(g);
                     }
                 }
             }
