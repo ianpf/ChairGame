@@ -32,8 +32,10 @@ public class KeyboardInputListener extends InputListener
                 controllers[0].setLeftXAxis(-1);
                 break;
             case 'S':
+                controllers[0].setLeftYAxis(-1);
                 break;
             case 'D':
+                controllers[0].setLeftXAxis(1);
                 break;
             default:
         }
