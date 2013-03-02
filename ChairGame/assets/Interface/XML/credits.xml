@@ -4,11 +4,7 @@
             <panel>
                 <text id="text" font="Interface/Fonts/Orbitron.fnt"  color="#000F" text="Some testing Text" align="center" valign="center" />
             </panel>
-            
-            
         </layer>
-        
-        
     </screen>
 </nifty>
     
