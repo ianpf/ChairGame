@@ -68,6 +68,8 @@ public class OfficeChair extends GameActor {
     // Get the health of the player
     void update(float tpf) {
         this.movement(playerInput.getLeftAxisVector().mult(maxSpeed));
+        Vector3f local = this.objectModel.worldToLocal(this.rigidBody.getPhysicsLocation(), new Vector3f());
+        this.objectModel.setLocalTranslation(local);
         angle = playerInput.getRightAxisDirection();
     }
 
