@@ -99,7 +99,11 @@ public class Level {
      * @param shot
      */
     public void spawnProjectile(Projectile shot){
-        //This will do stuff.
+        //Should have a pool for these. Fuck it, we'll deal with that if we have issues
+        Spatial shotSpatial = assetManager.loadModel("Models/marker/marker.j3o");
+        shot.setSpatial(shotSpatial);
+        moveableObjects.add(shot);
+        rootNode.attachChild(shotSpatial);
     }
     
     /**
