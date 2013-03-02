@@ -81,7 +81,14 @@ public class Level {
         wall = new Wall(g, -20.0f, -21.0f, 40.0f, 1.0f);
         this.staticObjects.add(wall);
         rootNode.attachChild(g);
-
+        min = new Vector3f(-21.0f, -1.0f, -21.0f);
+        max = new Vector3f(21.0f, 0.0f, 21.0f);
+        b = new Box(min, max);
+        g = (new Geometry("Box Bottom", b));
+        g.setMaterial(mat);
+        wall = new Wall(g, -21.0f, -21.0f, 0.0f, 0.0f);
+        this.staticObjects.add(wall);
+        rootNode.attachChild(g);
         
     }
     
@@ -100,6 +107,23 @@ public class Level {
      */
     public void removeSelf(GameObject requestor){
         killUs.add(requestor);
+    }
+    
+    /**
+     * Damages all GameActors in bounds except for immune.
+     * 
+     * @param immune
+     * @param bounds
+     * @param damage 
+     */
+    public void damageAllInRect(GameActor immune, RectF bounds, int damage){
+        for (MoveableGameObject g : moveableObjects){
+            if (g != immune && g.boundingCircle.collidesWithRect(bounds, false)){
+                if (g.type == GameObjectType.ACTOR){
+                    ((GameActor) g).takeDamage(damage);
+                }
+            }
+        }
     }
     
     
