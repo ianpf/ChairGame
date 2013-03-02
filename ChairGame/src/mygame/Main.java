@@ -23,6 +23,7 @@ import com.jme3.scene.shape.Box;
 import com.jme3.system.AppSettings;
 import com.jme3.light.*;
 import com.jme3.math.Vector3f;
+import java.util.Random;
 import mygame.GameMenuHUD;
 /**
  * test
@@ -37,6 +38,7 @@ public class Main extends SimpleApplication
     static boolean startCredits = false;
     private boolean hudTextNotSet = true;
     static OfficeChair[] chairArray = new OfficeChair[4];
+    static String[] names = new String[4];
     
     private BitmapText[] hudTexts = new BitmapText[4];
     
@@ -60,9 +62,12 @@ public class Main extends SimpleApplication
         
     }
     
-    public static void setPlayers(OfficeChair[] officeChairs){
-                chairArray = officeChairs;
-        
+    public static void setPlayers(OfficeChair[] officeChairs, int num){
+        chairArray = officeChairs;
+        for (int i = 0; i < num; i++)
+        {
+            names[i] = OfficeChair.names[((int) (OfficeChair.names.length * Math.random()))];
+        }
     }
     
     
@@ -129,7 +134,7 @@ public class Main extends SimpleApplication
                     hudTexts[i] = new BitmapText(guiFont, false);
                     hudTexts[i].setSize(guiFont.getCharSet().getRenderedSize());      // font size
                     hudTexts[i].setColor(ColorRGBA.White);                             // font color
-                    hudTexts[i].setText("Player " + i + " Helf: " + chairArray[i].getHealth());             // the text
+                    hudTexts[i].setText("Player " + names[i] + " Helf: " + chairArray[i].getHealth());             // the text
                     switch (i){
                         case 0:
                             System.out.println("EH?");
@@ -153,7 +158,7 @@ public class Main extends SimpleApplication
             hudTextNotSet = false;
             //Update HUD stats.
             for (int j = 0; j < 4 && chairArray[j] != null; j++){
-                hudTexts[j].setText("Player " + j + " Helf: " + chairArray[j].getHealth());
+                hudTexts[j].setText("Player " + names[j] + " Helf: " + chairArray[j].getHealth());
             }
         }
         
