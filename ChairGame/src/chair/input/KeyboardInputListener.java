@@ -13,9 +13,12 @@ import com.jme3.input.event.KeyInputEvent;
  */
 public class KeyboardInputListener extends InputListener
 {
+    InputController controllers[];
     public KeyboardInputListener(InputManager inputManager)
     {
         super(inputManager);
+        controllers = new InputController[1];
+        controllers[0] = new KeyboardInput();
     }
     
     public void onKeyEvent(KeyInputEvent evt)
