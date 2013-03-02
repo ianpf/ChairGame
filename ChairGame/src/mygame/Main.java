@@ -87,8 +87,8 @@ public class Main extends SimpleApplication
         if(startLevel){
             l = new Level(rootNode, assetManager, inputManager);
             startLevel = false;
-            cam.setLocation(new Vector3f(0, 20, -30));
-            cam.lookAt(new Vector3f(0, 0, 30), new Vector3f(0, 1, 0));
+            cam.setLocation(new Vector3f(0, 45, -30));
+            cam.lookAt(new Vector3f(0, 0, 15), new Vector3f(0, 1, 0));
             AmbientLight light = new AmbientLight();
             light.setColor(ColorRGBA.White.mult(1.3f));
             rootNode.addLight(light);
