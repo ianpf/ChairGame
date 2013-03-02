@@ -11,7 +11,16 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
+import com.jme3.texture.Texture;
 import java.util.LinkedList;
+import com.jme3.material.Material;
+import com.jme3.math.ColorRGBA;
+import com.jme3.math.Vector3f;
+import com.jme3.scene.Geometry;
+import com.jme3.scene.shape.Box;
+
+
+import java.util.Random;
 
 /**
  *
@@ -25,8 +34,8 @@ public class Level {
     LinkedList<MoveableGameObject> moveableObjects;
     LinkedList<StaticGameObject> staticObjects;
  
-    //Remove these from PhysicsSpace at the beginning of an update.
     LinkedList<GameObject> killUs;
+    LinkedList<Projectile> spawnUs;
     
     public Level(Node root, AssetManager assets, InputManager input){
         //We REALLY should implement a singleton...
@@ -34,31 +43,35 @@ public class Level {
         assetManager = assets;
         inputManager = input;
         killUs = new LinkedList<GameObject>();
+        spawnUs = new LinkedList<Projectile>();
         moveableObjects = new LinkedList<MoveableGameObject>();
         staticObjects = new LinkedList<StaticGameObject>();
         
         InputListener controllerListener = new XboxInputListener(input);
         for(InputController controller : controllerListener.getInputControllers())
         {
-            Spatial chairSpatial = assetManager.loadModel("Models/Angry Chair/Angry Chair.j3o");
+            Random rand = new Random();
+            rand.setSeed(System.currentTimeMillis());
+            String modelID = OfficeChair.models[rand.nextInt(OfficeChair.models.length)];
+            Spatial chairSpatial = assetManager.loadModel(modelID);
             rootNode.attachChild(chairSpatial);
             OfficeChair chair = new OfficeChair(this, new Vector2f(-5f, 0.0f), 0.0f, controller, chairSpatial);
             this.moveableObjects.add(chair);
         }
         
         Vector3f min = new Vector3f(-21.0f, 0.0f, -21.0f);
-        Vector3f max = new Vector3f(-20.0f, 3.0f, 21.0f);
+        Vector3f max = new Vector3f(-20.0f, 6.0f, 21.0f);
         Box b = new Box(min, max);
         Geometry g = new Geometry("Box Left", b);
         Material mat = new Material(assetManager, 
-                "Common/MatDefs/Misc/Unshaded.j3md");
-        mat.setColor("Color", ColorRGBA.LightGray);
+                "Common/MatDefs/Light/Lighting.j3md");
+        mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/cubicle.jpg"));
         g.setMaterial(mat);
         Wall wall = new Wall(g, -21.0f, -21.0f, 1.0f, 42.0f);
         this.staticObjects.add(wall);
         rootNode.attachChild(g);
         min = new Vector3f(-20.0f, 0.0f, 20.0f);
-        max = new Vector3f(20.0f, 3.0f, 21.0f);
+        max = new Vector3f(20.0f, 6.0f, 21.0f);
         b = new Box(min, max);
         g = (new Geometry("Box Top", b));
         g.setMaterial(mat);
@@ -66,7 +79,7 @@ public class Level {
         this.staticObjects.add(wall);
         rootNode.attachChild(g);
         min = new Vector3f(20.0f, 0.0f, -21.0f);
-        max = new Vector3f(21.0f, 3.0f, 21.0f);
+        max = new Vector3f(21.0f, 6.0f, 21.0f);
         b = new Box(min, max);
         g = (new Geometry("Box Right", b));
         g.setMaterial(mat);
@@ -74,7 +87,7 @@ public class Level {
         this.staticObjects.add(wall);
         rootNode.attachChild(g);
         min = new Vector3f(-20.0f, 0.0f, -21.0f);
-        max = new Vector3f(20.0f, 3.0f, -20.0f);
+        max = new Vector3f(20.0f, 6.0f, -20.0f);
         b = new Box(min, max);
         g = (new Geometry("Box Bottom", b));
         g.setMaterial(mat);
@@ -85,7 +98,8 @@ public class Level {
         max = new Vector3f(21.0f, 0.0f, 21.0f);
         b = new Box(min, max);
         g = (new Geometry("Box Bottom", b));
-        mat.setColor("Color", ColorRGBA.Gray);
+        mat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
+        mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/buldwarehouseroof.jpg"));
         g.setMaterial(mat);
         wall = new Wall(g, -21.0f, -21.0f, 0.0f, 0.0f);
         this.staticObjects.add(wall);
@@ -102,8 +116,7 @@ public class Level {
         //Should have a pool for these. Fuck it, we'll deal with that if we have issues
         Spatial shotSpatial = assetManager.loadModel("Models/marker/marker.j3o");
         shot.setSpatial(shotSpatial);
-        moveableObjects.add(shot);
-        rootNode.attachChild(shotSpatial);
+        spawnUs.add(shot);
     }
     
     /**
@@ -151,6 +164,11 @@ public class Level {
                 default:
             }
             killUs.remove(g);
+        }
+        for(Projectile p : spawnUs){
+            moveableObjects.add(p);
+            rootNode.attachChild(p.objectModel);
+            spawnUs.remove(p);
         }
         for(MoveableGameObject g: moveableObjects){
             g.update(tpf);

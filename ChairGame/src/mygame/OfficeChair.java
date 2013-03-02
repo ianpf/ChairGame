@@ -18,6 +18,20 @@ public class OfficeChair extends GameActor {
     private Weapon playerWeapon;
     private InputController playerInput;
     
+    public static String[] models = {
+        "Models/Angry Chair/Angry Chair.j3o",
+        "Models/cowboyChair/cowboyChair.j3o",
+        "Models/fezzChair/fezzChair.j3o",
+        "Models/fruityChair/fruityChair.j3o",
+        "Models/partyChair/partyChair.j3o"
+    };
+    
+    public static String[] names = {
+        "Carrie de Way", "Ike Aramba", "poospoon", "StormtrooprDave",
+        "Nuadu", "?!?!?!", "RoflCopter", "Sputnik", "Mr. Bread",
+        "Mrs. Butter", "Baby Pudding", "Fudgemister", "[Undecided]"
+    };
+    
     public OfficeChair(Level gameLevel, Vector2f startPosition, float angle,
             InputController playerInput, Spatial objectModel) {
         super(new CircleF(startPosition, 1));
@@ -27,7 +41,11 @@ public class OfficeChair extends GameActor {
         this.angle = angle;
         this.gameLevel = gameLevel;
         this.playerInput = playerInput;
+<<<<<<< HEAD
         playerWeapon = new Weapon(this, "", null, null);
+=======
+        this.playerWeapon = new Weapon(this, "", null, null);
+>>>>>>> 6c8ceb5f8b9360b6b02aad9a72533b49da3c5a0f
     }
     
     public float getAngle(){
@@ -55,6 +73,7 @@ public class OfficeChair extends GameActor {
 
     public void takeDamage(int damage) {
         health -= damage;
+        System.out.println("Health: " + this.getHealth());
     }
 
     // Get the health of the player
@@ -76,7 +95,8 @@ public class OfficeChair extends GameActor {
             primaryAttack();
         }
         
-        float[] angles = {0, playerInput.getRightAxisDirection(), 0};
+        this.angle = playerInput.getRightAxisDirection();
+        float[] angles = {0, angle, 0};
         Quaternion rot = new Quaternion(angles);
         objectModel.setLocalRotation(rot);
     }
