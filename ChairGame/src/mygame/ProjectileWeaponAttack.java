@@ -4,6 +4,7 @@
  */
 package mygame;
 
+import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
 
 /**
@@ -23,8 +24,9 @@ public class ProjectileWeaponAttack extends WeaponAttack {
         
     }
     public void use() {
-    //    Projectile shot = new Projectile(getWeapon().getOwner().getPosition(), damage, getWeapon().getOwner().getAngle(), speed);
-    //    getWeapon().getOwner().getLevel().spawnProjectile(shot);
+        Vector2f vel = new Vector2f();
+        Projectile shot = new Projectile(getWeapon().getOwner().getBoundingCircle().getPosition(), vel, damage);
+        getWeapon().getOwner().getLevel().spawnProjectile(shot);
     }
     
 }
