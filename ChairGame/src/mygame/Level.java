@@ -184,8 +184,7 @@ public class Level {
                     if (g.boundingCircle.collidesWithCircle(g2.boundingCircle)) {
                         if (g.type == GameObjectType.PROJECTILE &&
                                 ((GameObject)((Projectile) g).getOwner()) != g2){
-                            rootNode.detachChild(g.objectModel);
-                            moveableObjects.remove((MoveableGameObject) g);
+                            killUs.add(g);
                         }
                     }
                 }
