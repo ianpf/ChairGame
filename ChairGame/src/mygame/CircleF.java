@@ -1,79 +1,65 @@
 package mygame;
 
 import com.jme3.math.FastMath;
+import com.jme3.math.Vector2f;
 
 public class CircleF {
 	
-	private float itsX;
-	private float itsY;
+	private Vector2f itsPosition;
 	private float itsRadius;
 	
 	public CircleF() {
-		itsX = 0;
-		itsY = 0;
+		itsPosition = new Vector2f(0, 0);
 		itsRadius = 0;
 	}
-	public CircleF(float x, float y, float radius) {
-		itsX = x;
-		itsY = y;
+	public CircleF(Vector2f position, float radius) {
+		itsPosition = position;
 		itsRadius = radius;
 	}
 	
-	public float getX() {
-		return itsX;
-	}
-	public float getY() {
-		return itsY;
+	public Vector2f getPosition() {
+		return itsPosition;
 	}
 	public float getRadius() {
 		return itsRadius;
 	}
 	
-	public void setX(float value) {
-		itsX = value;
-	}
-	public void setY(float value) {
-		itsY = value;
+	public void setPosition(Vector2f value) {
+		itsPosition = value;
 	}
 	public void setRadius(float value) {
 		itsRadius = value;
 	}
 	
 	public boolean collidesWithCircle(CircleF target) {
-		float distanceX = FastMath.abs(itsX - target.getX());
-		float distanceY = FastMath.abs(itsY - target.getY());
-		float distance = FastMath.sqrt((itsX * itsX) + (itsY * itsY));
-		return distance < (itsRadius + target.getRadius());
+		return itsPosition.distance(target.getPosition()) < (itsRadius + target.getRadius());
 	}
 	public boolean collidesWithRect(RectF target) {
-		float left = itsX - itsRadius;
-		float right = itsX + itsRadius;
-		float bottom = itsY - itsRadius;
-		float top = itsY + itsRadius;
-		if ((itsY > target.getBottom()) && (itsY < target.getTop())) {
+		float x = itsPosition.getX();
+		float y = itsPosition.getY();
+		float left = x - itsRadius;
+		float right = x + itsRadius;
+		float bottom = y - itsRadius;
+		float top = y + itsRadius;
+		if ((y > target.getBottom()) && (y < target.getTop())) {
 			if ((left < target.getRight()) && (left > target.getLeft()))
 				return true;
 			if ((right < target.getRight()) && (right > target.getLeft()))
 				return true;
 		}
-		if ((itsX > target.getLeft()) && (itsX < target.getRight())) {
+		if ((x > target.getLeft()) && (x < target.getRight())) {
 			if ((bottom < target.getTop()) && (bottom > target.getLeft()))
 				return true;
 			if ((top < target.getTop()) && (top > target.getLeft()))
 				return true;
 		}
-		PointF center = new PointF(itsX, itsY);
-		PointF a = new PointF(target.getLeft(), target.getTop());
-		PointF b = new PointF(target.getRight(), target.getTop());
-		PointF c = new PointF(target.getLeft(), target.getBottom());
-		PointF d = new PointF(target.getRight(), target.getBottom());
-		if (center.distanceFrom(a) < itsRadius)
+		if (itsPosition.distance(target.getTopLeft()) < itsRadius)
 			return true;
-		if (center.distanceFrom(b) < itsRadius)
+		if (itsPosition.distance(target.getTopRight()) < itsRadius)
 			return true;
-		if (center.distanceFrom(c) < itsRadius)
+		if (itsPosition.distance(target.getBottomLeft()) < itsRadius)
 			return true;
-		if (center.distanceFrom(d) < itsRadius)
+		if (itsPosition.distance(target.getBottomRight()) < itsRadius)
 			return true;
 		return false;
 	}

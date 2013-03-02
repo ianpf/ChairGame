@@ -1,6 +1,7 @@
 package mygame;
 
 import com.jme3.math.FastMath;
+import com.jme3.math.Vector2f;
 
 public class RectF {
 	
@@ -45,6 +46,19 @@ public class RectF {
 	}
 	public float getHeight() {
 		return itsHeight;
+	}
+	
+	public Vector2f getTopLeft() {
+		return new Vector2f(itsLeft, itsTop);
+	}
+	public Vector2f getTopRight() {
+		return new Vector2f(itsRight, itsTop);
+	}
+	public Vector2f getBottomLeft() {
+		return new Vector2f(itsLeft, itsBottom);
+	}
+	public Vector2f getBottomRight() {
+		return new Vector2f(itsRight, itsBottom);
 	}
 	
 	public void setLeft(float value) {
