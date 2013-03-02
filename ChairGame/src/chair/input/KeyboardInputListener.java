@@ -26,8 +26,10 @@ public class KeyboardInputListener extends InputListener
         switch(evt.getKeyChar())
         {
             case 'W':
+                controllers[0].setLeftYAxis(1);
                 break;
             case 'A':
+                controllers[0].setLeftXAxis(-1);
                 break;
             case 'S':
                 break;
