@@ -14,18 +14,24 @@ import com.jme3.scene.Spatial;
  */
 public class Projectile extends MoveableGameObject {
     
+    private OfficeChair owner;
     private int damage;
     private float angle;
     private float speed;
     
     private Vector2f direction;
     
-    public Projectile(Vector2f location, Vector2f velocity, int damage) {
+    public Projectile(OfficeChair owner, Vector2f location, Vector2f velocity, int damage) {
         super(new CircleF(location, 0.5f));
+        this.owner = owner;
         this.type = GameObjectType.PROJECTILE;
         this.velocity = velocity;
         this.damage = damage;
             
+    }
+    
+    public OfficeChair getOwner() {
+        return this.owner;
     }
     
     public int getDamage() {

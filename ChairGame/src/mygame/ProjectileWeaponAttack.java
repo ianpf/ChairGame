@@ -4,6 +4,7 @@
  */
 package mygame;
 
+import com.jme3.math.Quaternion;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
 
@@ -24,9 +25,15 @@ public class ProjectileWeaponAttack extends WeaponAttack {
         
     }
     public void use() {
-        Vector2f vel = new Vector2f(1, 1);
-        Projectile shot = new Projectile(getWeapon().getOwner().getBoundingCircle().getPosition(), vel, damage);
+        Vector3f vel = new Vector3f(0, 0, -2);
+        
+        float angle = getWeapon().getOwner().getAngle();
+        float[] angles = {0, angle, 0};
+        Quaternion rot = new Quaternion(angles);
+        vel = rot.mult(vel);
+        Projectile shot = new Projectile(getWeapon().getOwner(), getWeapon().getOwner().getBoundingCircle().getPosition(), new Vector2f(vel.getX(), vel.getZ()), damage);
         getWeapon().getOwner().getLevel().spawnProjectile(shot);
+        System.out.println("SHOT");
     }
     
 }

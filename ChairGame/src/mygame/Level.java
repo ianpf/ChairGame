@@ -48,6 +48,8 @@ public class Level {
         staticObjects = new LinkedList<StaticGameObject>();
         
         InputListener controllerListener = new XboxInputListener(input);
+        int count = 0;
+        OfficeChair allPlayers[] = new OfficeChair[4];
         for(InputController controller : controllerListener.getInputControllers())
         {
             Random rand = new Random();
@@ -57,7 +59,10 @@ public class Level {
             rootNode.attachChild(chairSpatial);
             OfficeChair chair = new OfficeChair(this, new Vector2f(-5f, 0.0f), 0.0f, controller, chairSpatial);
             this.moveableObjects.add(chair);
+            allPlayers[count++] = chair;
         }
+        
+        //Main.setPlayers(allPlayers);
         
         Vector3f min = new Vector3f(-21.0f, 0.0f, -21.0f);
         Vector3f max = new Vector3f(-20.0f, 6.0f, 21.0f);
@@ -157,6 +162,7 @@ public class Level {
                     moveableObjects.remove((MoveableGameObject) g);
                     break;
                 case PROJECTILE:
+                    rootNode.detachChild(g.objectModel);
                     moveableObjects.remove((MoveableGameObject) g);
                     break;
                 case OBSTACLE:
@@ -175,13 +181,25 @@ public class Level {
 
             for (MoveableGameObject g2: moveableObjects){
                 if (g != g2){
-                    g.boundingCircle.collidesWithCircle(g2.boundingCircle);
+                    if (g.boundingCircle.collidesWithCircle(g2.boundingCircle)) {
+                        if (g.type == GameObjectType.PROJECTILE &&
+                                ((GameObject)((Projectile) g).getOwner()) != g2){
+                            rootNode.detachChild(g.objectModel);
+                            moveableObjects.remove((MoveableGameObject) g);
+                        }
+                    }
                 }
             }
             
             for (StaticGameObject g2: staticObjects){
-                System.out.println(g.boundingCircle.collidesWithRect(g2.boundingRect));
+                if (g.boundingCircle.collidesWithRect(g2.boundingRect)) {
+                    if (g.type == GameObjectType.PROJECTILE ){
+                        rootNode.detachChild(g.objectModel);
+                        moveableObjects.remove((MoveableGameObject) g);
+                    }
+                }
             }
+           
 /*
             OfficeChair a = (OfficeChair)allObjects.get(0);
             OfficeChair b = (OfficeChair)allObjects.get(1);
