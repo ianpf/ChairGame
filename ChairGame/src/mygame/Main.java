@@ -84,7 +84,7 @@ public class Main extends SimpleApplication
         if(startLevel){
             l = new Level(rootNode, assetManager, inputManager);
             startLevel = false;
-            cam.setLocation(new Vector3f(0, 0, 20));
+            cam.setLocation(new Vector3f(0, 20, 0));
         }
         if(l != null){
             l.update(tpf);
