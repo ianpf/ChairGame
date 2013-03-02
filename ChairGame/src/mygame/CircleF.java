@@ -32,6 +32,9 @@ public class CircleF {
 	}
 	
 	public boolean collidesWithCircle(CircleF target) {
+		return collidesWithCircle(target, false);
+	}
+	public boolean collidesWithCircle(CircleF target) {
 		return itsPosition.distance(target.getPosition()) < (itsRadius + target.getRadius());
 	}
 	public boolean collidesWithRect(RectF target) {
