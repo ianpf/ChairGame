@@ -3,12 +3,6 @@ package mygame;
 import chair.input.XboxController;
 import chair.input.XboxInputListener;
 import com.jme3.asset.AssetManager;
-import com.jme3.bounding.BoundingBox;
-import com.jme3.bullet.PhysicsSpace;
-import com.jme3.bullet.collision.PhysicsCollisionEvent;
-import com.jme3.bullet.collision.PhysicsCollisionListener;
-import com.jme3.bullet.collision.shapes.BoxCollisionShape;
-import com.jme3.bullet.objects.PhysicsRigidBody;
 import com.jme3.input.InputManager;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Node;
@@ -91,7 +85,5 @@ public class Level {
             g.update(tpf);
         }
     }
-    
-    
     
 }
