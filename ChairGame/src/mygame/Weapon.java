@@ -22,6 +22,7 @@ public class Weapon {
         this.name = name;
         this.primaryAttack = primaryAttack;
         this.secondaryAttack = secondaryAttack;
+        primaryAttack = new MeleeWeaponAttack(this);
     }
     
     public OfficeChair getOwner() {
