@@ -10,7 +10,7 @@
 		</panel>
  
 		<panel id="gameStart" height="10%" width="25%" align="center" backgroundColor="#BBBF" childLayout="center" visibleToMouse="true">
-			<interact onClick="quit()"/>
+			<interact onClick="startLevel()"/>
 				<effect>
 					<onStartScreen name="move" mode="in" direction="top" length="300" startDelay="0" inherit="true"/>
 					<onActive name="border" color="#2F2F2FFF" border="5px" />

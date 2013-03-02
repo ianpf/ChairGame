@@ -24,8 +24,12 @@ public class GameMenuHUD implements ScreenController
         this.nifty = nifty;
     }
 
-    public void onStartScreen() {
+    public void startLevel(){
         Main.startLevel();
+    }
+    
+    public void onStartScreen() {
+        //Main.startLevel();
     }
 
     public void onEndScreen() {
