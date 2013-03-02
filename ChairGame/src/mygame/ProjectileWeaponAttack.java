@@ -24,7 +24,7 @@ public class ProjectileWeaponAttack extends WeaponAttack {
         
     }
     public void use() {
-        Vector2f vel = new Vector2f();
+        Vector2f vel = new Vector2f(1, 1);
         Projectile shot = new Projectile(getWeapon().getOwner().getBoundingCircle().getPosition(), vel, damage);
         getWeapon().getOwner().getLevel().spawnProjectile(shot);
     }
