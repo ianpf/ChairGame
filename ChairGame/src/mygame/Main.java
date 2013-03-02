@@ -18,6 +18,7 @@ import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.shape.Box;
+import com.jme3.system.AppSettings;
 
 /**
  * test
@@ -29,6 +30,9 @@ public class Main extends SimpleApplication
 
     public static void main(String[] args) {
         Main app = new Main();
+        AppSettings settings = new AppSettings(true);
+        settings.putBoolean("DisableJoysticks", false);
+        app.setSettings(settings);
         app.start();
     }
 
@@ -43,7 +47,7 @@ public class Main extends SimpleApplication
 
         rootNode.attachChild(geom);
         
-        il = new KeyboardInputListener(inputManager);
+        il = new XboxInputListener(inputManager);
     }
 
     @Override
@@ -52,7 +56,7 @@ public class Main extends SimpleApplication
         InputController controller = il.getInputControllers()[0];
         controller.getLeftAxisDirection();
         System.out.println("LS Angle = " + controller.getLeftAxisDirection() + " LS Power =" + controller.getLeftAxisPower());
-        //System.out.println("RS Angle = " + controller.getRightAxisDirection() + " RS Power =" + controller.getRightAxisPower());
+        System.out.println("RS Angle = " + controller.getRightAxisDirection() + " RS Power =" + controller.getRightAxisPower());
     }
 
     @Override
