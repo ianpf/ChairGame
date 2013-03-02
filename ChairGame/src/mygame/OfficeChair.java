@@ -53,6 +53,7 @@ public class OfficeChair extends GameActor {
 
     public void takeDamage(int damage) {
         health -= damage;
+        System.out.println("Health: " + this.getHealth());
     }
 
     // Get the health of the player
