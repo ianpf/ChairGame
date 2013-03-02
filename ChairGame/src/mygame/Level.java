@@ -25,8 +25,8 @@ public class Level {
     LinkedList<MoveableGameObject> moveableObjects;
     LinkedList<StaticGameObject> staticObjects;
  
-    //Remove these from PhysicsSpace at the beginning of an update.
     LinkedList<GameObject> killUs;
+    LinkedList<Projectile> spawnUs;
     
     public Level(Node root, AssetManager assets, InputManager input){
         //We REALLY should implement a singleton...
@@ -34,6 +34,7 @@ public class Level {
         assetManager = assets;
         inputManager = input;
         killUs = new LinkedList<GameObject>();
+        spawnUs = new LinkedList<Projectile>();
         moveableObjects = new LinkedList<MoveableGameObject>();
         staticObjects = new LinkedList<StaticGameObject>();
         
@@ -102,8 +103,7 @@ public class Level {
         //Should have a pool for these. Fuck it, we'll deal with that if we have issues
         Spatial shotSpatial = assetManager.loadModel("Models/marker/marker.j3o");
         shot.setSpatial(shotSpatial);
-        moveableObjects.add(shot);
-        rootNode.attachChild(shotSpatial);
+        spawnUs.add(shot);
     }
     
     /**
@@ -151,6 +151,11 @@ public class Level {
                 default:
             }
             killUs.remove(g);
+        }
+        for(Projectile p : spawnUs){
+            moveableObjects.add(p);
+            rootNode.attachChild(p.objectModel);
+            spawnUs.remove(p);
         }
         for(MoveableGameObject g: moveableObjects){
             g.update(tpf);
