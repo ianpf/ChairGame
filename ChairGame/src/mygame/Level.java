@@ -54,7 +54,7 @@ public class Level {
         Geometry g = new Geometry("Box Left", b);
         Material mat = new Material(assetManager, 
                 "Common/MatDefs/Misc/Unshaded.j3md");
-        mat.setColor("color", ColorRGBA.White);
+        mat.setColor("Color", ColorRGBA.White);
         g.setMaterial(mat);
         Wall wall = new Wall(g, -21.0f, -21.0f, 1.0f, 42.0f);
         this.staticObjects.add(wall);
