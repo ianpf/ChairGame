@@ -7,7 +7,7 @@ public abstract class MoveableGameObject extends GameObject {
 	
 	protected CircleF boundingCircle;
 	protected Vector2f velocity;
-        protected float maxSpeed = 1f;
+        protected float maxSpeed = 3f;
 	
 	public MoveableGameObject(CircleF boundingCircle) {
 		super();
@@ -21,5 +21,9 @@ public abstract class MoveableGameObject extends GameObject {
                 //System.out.println(boundingCircle.getPosition().getX() + " " + boundingCircle.getPosition().getY() + "\n");
                //System.out.println(this.objectModel.getLocalTranslation().getX() + " " + this.objectModel.getLocalTranslation().getY() + "\n");
 	}
+        
+        public CircleF getBoundingCircle() {
+            return boundingCircle;
+        }
 	
 }

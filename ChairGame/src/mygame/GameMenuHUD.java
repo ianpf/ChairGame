@@ -19,7 +19,7 @@ import de.lessvoid.nifty.screen.ScreenController;
 import mygame.Main;
 
 public class GameMenuHUD implements ScreenController 
-{
+{   
     Nifty nifty;
 
     public void bind(Nifty nifty, Screen screen) {
@@ -29,11 +29,12 @@ public class GameMenuHUD implements ScreenController
     public void startLevel(){
         
         Main.startLevel();
-        //nifty.exit();
+        nifty.exit();
     }
     
     public void gameCredits(){
-        //GameCredits creds = new GameCredits(audioRenderer, assetManager, audioRenderer, guiViewPort);
+        nifty.exit();
+        
     }
     
     public void onStartScreen() {

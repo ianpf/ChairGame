@@ -32,9 +32,24 @@ public class CircleF {
 	}
 	
 	public boolean collidesWithCircle(CircleF target) {
-		return itsPosition.distance(target.getPosition()) < (itsRadius + target.getRadius());
+		return collidesWithCircle(target, true);
+	}
+	public boolean collidesWithCircle(CircleF target, boolean resolve) {
+		Vector2f displacement = target.getPosition().subtract(itsPosition).normalize();
+		float distance = itsPosition.distance(target.getPosition());
+		float overshoot = distance - itsRadius - target.getRadius();
+		if (overshoot < 0) {
+			if (resolve) {
+				itsPosition = itsPosition.add(displacement.mult(itsRadius + target.getRadius()));
+			}
+			return true;
+		}
+		return false;
 	}
 	public boolean collidesWithRect(RectF target) {
+		return collidesWithRect(target, true);
+	}
+	public boolean collidesWithRect(RectF target, boolean resolve) {
 		float x = itsPosition.getX();
 		float y = itsPosition.getY();
 		float left = x - itsRadius;
@@ -42,16 +57,32 @@ public class CircleF {
 		float bottom = y - itsRadius;
 		float top = y + itsRadius;
 		if ((y > target.getBottom()) && (y < target.getTop())) {
-			if ((left < target.getRight()) && (left > target.getLeft()))
+			if ((left < target.getRight()) && (left > target.getLeft())) {
+				if (resolve) {
+					itsPosition.setX(itsPosition.getX() + (target.getRight() - left));
+				}
 				return true;
-			if ((right < target.getRight()) && (right > target.getLeft()))
+			}
+			if ((right < target.getRight()) && (right > target.getLeft())) {
+				if (resolve) {
+					itsPosition.setX(itsPosition.getX() + (target.getLeft() - right));
+				}
 				return true;
+			}
 		}
 		if ((x > target.getLeft()) && (x < target.getRight())) {
-			if ((bottom < target.getTop()) && (bottom > target.getLeft()))
+			if ((bottom < target.getTop()) && (bottom > target.getLeft())) {
+				if (resolve) {
+					itsPosition.setY(itsPosition.getY() + (target.getTop() - bottom));
+				}
 				return true;
-			if ((top < target.getTop()) && (top > target.getLeft()))
+			}
+			if ((top < target.getTop()) && (top > target.getLeft())) {
+				if (resolve) {
+					itsPosition.setY(itsPosition.getY() + (target.getBottom() - top));
+				}
 				return true;
+			}
 		}
 		if (itsPosition.distance(target.getTopLeft()) < itsRadius)
 			return true;

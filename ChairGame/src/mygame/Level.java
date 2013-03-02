@@ -21,7 +21,7 @@ public class Level {
     AssetManager assetManager;
     InputManager inputManager;
     LinkedList<MoveableGameObject> moveableObjects;
-    LinkedList<GameObject> staticObjects;
+    LinkedList<StaticGameObject> staticObjects;
  
     //Remove these from PhysicsSpace at the beginning of an update.
     LinkedList<GameObject> killUs;
@@ -33,29 +33,18 @@ public class Level {
         inputManager = input;
         killUs = new LinkedList<GameObject>();
         moveableObjects = new LinkedList<MoveableGameObject>();
+        staticObjects = new LinkedList<StaticGameObject>();
         
         InputListener controllerListener = new XboxInputListener(input);
-        Spatial chairSpatial = 
-                assetManager.loadModel("Models/Angry Chair/Angry Chair.j3o");
-        rootNode.attachChild(chairSpatial);        
-        OfficeChair chair= new OfficeChair(
-                this, 
-                new Vector2f(0.0f, 0.0f),
-                0.0f, 
-                controllerListener.getInputControllers()[0], 
-                chairSpatial);
-                this.moveableObjects.add(chair);
-                
-        chairSpatial = 
-                assetManager.loadModel("Models/fezzChair/fezzChair.j30");
-        rootNode.attachChild(chairSpatial); //Second chair.
-        chair = new OfficeChair(
-                this, 
-                new Vector2f(0.0f, 10.0f),
-                0.0f, 
-                (InputController) controllerListener.getInputControllers()[1], 
-                chairSpatial);
-                this.moveableObjects.add(chair);
+        float temp = 0;
+        for(InputController controller : controllerListener.getInputControllers())
+        {
+            temp += 10;
+            Spatial chairSpatial = assetManager.loadModel("Models/Angry Chair/Angry Chair.j3o");
+            rootNode.attachChild(chairSpatial);
+            OfficeChair chair = new OfficeChair(this, new Vector2f(temp, 0.0f), 0.0f, controller, chairSpatial);
+            this.moveableObjects.add(chair);
+        }
         
         Vector3f min = new Vector3f(-21.0f, 0.0f, -21.0f);
         Vector3f max = new Vector3f(-20.0f, 3.0f, 21.0f);
@@ -81,6 +70,7 @@ public class Level {
         g = (new Geometry("Box Bottom", b));
         wall = new Wall(g, -20.0f, -21.0f, 40.0f, 1.0f);
         this.staticObjects.add(wall);
+
         
     }
     
@@ -124,14 +114,21 @@ public class Level {
         }
         for(MoveableGameObject g: moveableObjects){
             g.update(tpf);
+
             for (MoveableGameObject g2: moveableObjects){
                 if (g != g2){
-                    g.boundingCircle.collidesWithCircle(g2.boundingCircle));
+                    g.boundingCircle.collidesWithCircle(g2.boundingCircle);
                 }
             }
-            for (GameObject g2: staticObjects){
+            for (StaticGameObject g2: staticObjects){
                 g.boundingCircle.collidesWithRect(g2.boundingRect);
             }
+/*
+            OfficeChair a = (OfficeChair)allObjects.get(0);
+            OfficeChair b = (OfficeChair)allObjects.get(1);
+            if (a.getBoundingCircle().collidesWithCircle(b.getBoundingCircle(), true))
+                System.out.println("Fuck yeah");
+*/
         }
     }
     

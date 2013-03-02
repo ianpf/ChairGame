@@ -86,4 +86,12 @@ public class RectF {
 		itsTop = itsBottom + value;
 	}
 	
+	public Vector2f getCenter() {
+		return new Vector2f((itsRight + itsLeft) / 2, (itsBottom + itsTop) / 2);
+	}
+	public void setCenter(Vector2f value) {
+		setLeft(value.getX() - (itsWidth / 2));
+		setBottom(value.getY() - (itsHeight / 2));
+	}
+	
 }
