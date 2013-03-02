@@ -26,15 +26,17 @@ public class GameMenuHUD implements ScreenController
         this.nifty = nifty;
     }
 
+    
+    
     public void startLevel(){
-        
         Main.startLevel();
         nifty.exit();
+        Main.gameState = 1;
+        Main.changeAudio();
     }
     
     public void gameCredits(){
-        nifty.exit();
-        
+        Main.loadCredits();
     }
     
     public void onStartScreen() {
@@ -46,6 +48,7 @@ public class GameMenuHUD implements ScreenController
 
     public void quit() {
         nifty.exit();
+        System.exit(0);
 
         Main.gameState = 1;
         //Main.simpleInitApp();
