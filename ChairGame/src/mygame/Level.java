@@ -3,6 +3,8 @@ package mygame;
 import chair.input.*;
 import com.jme3.asset.AssetManager;
 import com.jme3.input.InputManager;
+import com.jme3.material.Material;
+import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
@@ -50,26 +52,37 @@ public class Level {
         Vector3f max = new Vector3f(-20.0f, 3.0f, 21.0f);
         Box b = new Box(min, max);
         Geometry g = new Geometry("Box Left", b);
+        Material mat = new Material(assetManager, 
+                "Common/MatDefs/Misc/Unshaded.j3md");
+        mat.setColor("Color", ColorRGBA.White);
+        g.setMaterial(mat);
         Wall wall = new Wall(g, -21.0f, -21.0f, 1.0f, 42.0f);
         this.staticObjects.add(wall);
+        rootNode.attachChild(g);
         min = new Vector3f(-20.0f, 0.0f, 20.0f);
         max = new Vector3f(20.0f, 3.0f, 21.0f);
         b = new Box(min, max);
         g = (new Geometry("Box Top", b));
+        g.setMaterial(mat);
         wall = new Wall(g, -20.0f, 20.0f, 40.0f, 1.0f);
         this.staticObjects.add(wall);
+        rootNode.attachChild(g);
         min = new Vector3f(20.0f, 0.0f, -21.0f);
         max = new Vector3f(21.0f, 3.0f, 21.0f);
         b = new Box(min, max);
         g = (new Geometry("Box Right", b));
+        g.setMaterial(mat);
         wall = new Wall(g, 20.0f, -21.0f, 1.0f, 42.0f);
         this.staticObjects.add(wall);
+        rootNode.attachChild(g);
         min = new Vector3f(-20.0f, 0.0f, -21.0f);
         max = new Vector3f(20.0f, 3.0f, -20.0f);
         b = new Box(min, max);
         g = (new Geometry("Box Bottom", b));
+        g.setMaterial(mat);
         wall = new Wall(g, -20.0f, -21.0f, 40.0f, 1.0f);
         this.staticObjects.add(wall);
+        rootNode.attachChild(g);
 
         
     }
