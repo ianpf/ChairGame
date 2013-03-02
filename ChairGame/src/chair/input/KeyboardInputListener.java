@@ -17,24 +17,37 @@ public class KeyboardInputListener extends InputListener
     public KeyboardInputListener(InputManager inputManager)
     {
         super(inputManager);
+        inputManager.addRawInputListener(this);
+        
         controllers = new InputController[1];
         controllers[0] = new KeyboardInput();
     }
     
+    public InputController[] getInputControllers()
+    {
+        return controllers;
+    }
+    
+    @Override
     public void onKeyEvent(KeyInputEvent evt)
     {
+        System.out.println(evt.getKeyChar());
         switch(evt.getKeyChar())
         {
             case 'W':
+            case 'w':
                 controllers[0].setLeftYAxis(1);
                 break;
             case 'A':
+            case 'a':
                 controllers[0].setLeftXAxis(-1);
                 break;
             case 'S':
+            case 's':
                 controllers[0].setLeftYAxis(-1);
                 break;
             case 'D':
+            case 'd':
                 controllers[0].setLeftXAxis(1);
                 break;
             default:

@@ -40,5 +40,7 @@ public abstract class InputListener implements RawInputListener
     public void onKeyEvent(KeyInputEvent evt) {}
 
     public void onTouchEvent(TouchEvent evt) {}
+
+    public abstract InputController[] getInputControllers();
     
 }

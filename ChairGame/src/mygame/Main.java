@@ -1,6 +1,8 @@
 package mygame;
 
 import chair.input.InputController;
+import chair.input.InputListener;
+import chair.input.KeyboardInputListener;
 import chair.input.XboxInputListener;
 import com.jme3.app.SimpleApplication;
 import com.jme3.input.RawInputListener;
@@ -23,7 +25,7 @@ import com.jme3.scene.shape.Box;
  */
 public class Main extends SimpleApplication
 {
-    XboxInputListener il;
+    InputListener il;
 
     public static void main(String[] args) {
         Main app = new Main();
@@ -41,15 +43,15 @@ public class Main extends SimpleApplication
 
         rootNode.attachChild(geom);
         
-        il = new XboxInputListener(inputManager);
+        il = new KeyboardInputListener(inputManager);
     }
 
     @Override
     public void simpleUpdate(float tpf)
     {
         InputController controller = il.getInputControllers()[0];
-        //controller.getLeftAxisDirection();
-        //System.out.println("LS Angle = " + controller.getLeftAxisDirection() + " LS Power =" + controller.getLeftAxisPower());
+        controller.getLeftAxisDirection();
+        System.out.println("LS Angle = " + controller.getLeftAxisDirection() + " LS Power =" + controller.getLeftAxisPower());
         //System.out.println("RS Angle = " + controller.getRightAxisDirection() + " RS Power =" + controller.getRightAxisPower());
     }
 

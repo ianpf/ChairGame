@@ -35,7 +35,7 @@ public class KeyboardInput extends InputController
     @Override
     public float getLeftAxisDirection() 
     {
-        //System.out.println("LX: " + leftXAxis + " LY: " + leftYAxis);
+        System.out.println("LX: " + leftXAxis + " LY: " + leftYAxis);
         Vector2f dir;
         dir = new Vector2f(leftXAxis, -leftYAxis);
         float length = Math.min(1, dir.length());
