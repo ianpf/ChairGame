@@ -39,7 +39,7 @@ public class Level {
         float temp = 0;
         for(InputController controller : controllerListener.getInputControllers())
         {
-            temp += 10;
+            temp += 3;
             Spatial chairSpatial = assetManager.loadModel("Models/Angry Chair/Angry Chair.j3o");
             rootNode.attachChild(chairSpatial);
             OfficeChair chair = new OfficeChair(this, new Vector2f(temp, 0.0f), 0.0f, controller, chairSpatial);
