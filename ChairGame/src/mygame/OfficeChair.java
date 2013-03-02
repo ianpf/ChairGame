@@ -18,6 +18,15 @@ public class OfficeChair extends GameActor {
     private Weapon playerWeapon;
     private InputController playerInput;
     
+    public static String[] models = {
+        "Models/Angry Chair/Angry Chair.j3o",
+        "Models/cowboyChair/cowboyChair.j3o",
+        "Models/fezzChair/fezzChair.j3o",
+        "Models/fruityChair/fruityChair.j3o",
+        "Models/partyChair/partyChair.j3o",
+        "Models/stillChair/stillChair.j3o"
+    };
+    
     public OfficeChair(Level gameLevel, Vector2f startPosition, float angle,
             InputController playerInput, Spatial objectModel) {
         super(new CircleF(startPosition, 1));
@@ -77,7 +86,8 @@ public class OfficeChair extends GameActor {
             primaryAttack();
         }
         
-        float[] angles = {0, playerInput.getRightAxisDirection(), 0};
+        this.angle = playerInput.getRightAxisDirection();
+        float[] angles = {0, angle, 0};
         Quaternion rot = new Quaternion(angles);
         objectModel.setLocalRotation(rot);
     }

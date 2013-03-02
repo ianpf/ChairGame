@@ -6,6 +6,7 @@ package mygame;
 
 import com.jme3.math.Vector2f;
 import com.jme3.math.Quaternion;
+import com.jme3.scene.Spatial;
 
 /**
  *

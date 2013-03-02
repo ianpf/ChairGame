@@ -13,6 +13,7 @@ import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
 import com.jme3.texture.Texture;
 import java.util.LinkedList;
+<<<<<<< HEAD
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
@@ -20,6 +21,9 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.shape.Box;
 
 
+=======
+import java.util.Random;
+>>>>>>> 5cb45909a9e5b3e5cfc90eb10e68bf6c4f048204
 
 /**
  *
@@ -48,7 +52,10 @@ public class Level {
         InputListener controllerListener = new XboxInputListener(input);
         for(InputController controller : controllerListener.getInputControllers())
         {
-            Spatial chairSpatial = assetManager.loadModel("Models/Angry Chair/Angry Chair.j3o");
+            Random rand = new Random();
+            rand.setSeed(System.currentTimeMillis());
+            String modelID = OfficeChair.models[rand.nextInt(OfficeChair.models.length)];
+            Spatial chairSpatial = assetManager.loadModel(modelID);
             rootNode.attachChild(chairSpatial);
             OfficeChair chair = new OfficeChair(this, new Vector2f(-5f, 0.0f), 0.0f, controller, chairSpatial);
             this.moveableObjects.add(chair);
@@ -108,7 +115,11 @@ public class Level {
      * @param shot
      */
     public void spawnProjectile(Projectile shot){
-        //This will do stuff.
+        //Should have a pool for these. Fuck it, we'll deal with that if we have issues
+        Spatial shotSpatial = assetManager.loadModel("Models/marker/marker.j3o");
+        shot.setSpatial(shotSpatial);
+        moveableObjects.add(shot);
+        rootNode.attachChild(shotSpatial);
     }
     
     /**
