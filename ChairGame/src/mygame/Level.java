@@ -176,12 +176,19 @@ public class Level {
             for (MoveableGameObject g2: moveableObjects){
                 if (g != g2){
                     g.boundingCircle.collidesWithCircle(g2.boundingCircle);
+                    if (g.type == GameObjectType.PROJECTILE){
+                        killUs.add(g);
+                    }
                 }
             }
             
             for (StaticGameObject g2: staticObjects){
-                System.out.println(g.boundingCircle.collidesWithRect(g2.boundingRect));
+                g.boundingCircle.collidesWithRect(g2.boundingRect);
+                if (g.type == GameObjectType.PROJECTILE){
+                    killUs.add(g);
+                }
             }
+           
 /*
             OfficeChair a = (OfficeChair)allObjects.get(0);
             OfficeChair b = (OfficeChair)allObjects.get(1);
