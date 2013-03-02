@@ -157,6 +157,7 @@ public class Level {
                     moveableObjects.remove((MoveableGameObject) g);
                     break;
                 case PROJECTILE:
+                    rootNode.detachChild(g.objectModel);
                     moveableObjects.remove((MoveableGameObject) g);
                     break;
                 case OBSTACLE:
@@ -177,7 +178,8 @@ public class Level {
                 if (g != g2){
                     g.boundingCircle.collidesWithCircle(g2.boundingCircle);
                     if (g.type == GameObjectType.PROJECTILE){
-                        killUs.add(g);
+                        rootNode.detachChild(g.objectModel);
+                        moveableObjects.remove((MoveableGameObject) g);
                     }
                 }
             }
@@ -185,7 +187,8 @@ public class Level {
             for (StaticGameObject g2: staticObjects){
                 g.boundingCircle.collidesWithRect(g2.boundingRect);
                 if (g.type == GameObjectType.PROJECTILE){
-                    killUs.add(g);
+                    rootNode.detachChild(g.objectModel);
+                    moveableObjects.remove((MoveableGameObject) g);
                 }
             }
            
