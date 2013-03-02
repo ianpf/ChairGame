@@ -12,6 +12,16 @@ import com.jme3.math.Vector3f;
  */
 public abstract class WeaponAttack {
     
-    public abstract void use(Level level, Vector3f location, float angle);
+    private Weapon weapon;
+    
+    public WeaponAttack(Weapon weapon) {
+        this.weapon = weapon;
+    }
+    
+    public Weapon getWeapon() {
+        return this.weapon;
+    }
+    
+    public abstract void use();
     
 }

@@ -12,27 +12,30 @@ import com.jme3.math.Vector3f;
  */
 public class Weapon {
     
-    private Level level;
+    private OfficeChair owner;
     private String name;
     protected WeaponAttack primaryAttack;
     protected WeaponAttack secondaryAttack;
     
-    public Weapon(Level level, String name, WeaponAttack primaryAttack, WeaponAttack secondaryAttack) {
-        this.level = level;
+    public Weapon(OfficeChair owner, String name, WeaponAttack primaryAttack, WeaponAttack secondaryAttack) {
+        this.owner = owner;
         this.name = name;
         this.primaryAttack = primaryAttack;
         this.secondaryAttack = secondaryAttack;
     }
     
+    public OfficeChair getOwner() {
+        return this.owner;
+    }
     public String getName() {
         return this.name;
     }
     
-    public void usePrimary(Vector3f location, float angle) {
-        this.primaryAttack.use(level, location, angle);
+    public void usePrimary() {
+        this.primaryAttack.use();
     }
-    public void useSecondary(Vector3f location, float angle) {
-        this.secondaryAttack.use(level, location, angle);
+    public void useSecondary() {
+        this.secondaryAttack.use();
     }
     
 }

@@ -15,7 +15,7 @@ public class OfficeChair extends GameActor {
     private Level gameLevel;
     private Weapon playerWeapon;
     private XboxController playerInput;
-    private float maxSpeed = 10;
+    private float maxSpeed = 0.1f;
 
     public OfficeChair(Level gameLevel, Vector3f startPosition, float angle,
             XboxController playerInput, Spatial objectModel, PhysicsRigidBody
@@ -29,7 +29,19 @@ public class OfficeChair extends GameActor {
         this.gameLevel = gameLevel;
         this.playerInput = playerInput;
     }
+    
+    public Vector3f getPosition(){
+        return position;
+    }
+    
+    public float getAngle(){
+        return angle;
+    }
 
+    public Level getLevel() {
+        return this.gameLevel;
+    }
+    
     public void onCollision(GameObject object) {
     }
 
@@ -42,11 +54,11 @@ public class OfficeChair extends GameActor {
     }
 
     public void primaryAttack() {
-        this.playerWeapon.usePrimary(position, angle);
+        this.playerWeapon.usePrimary();
     }
 
     public void secondaryAttack() {
-        this.playerWeapon.useSecondary(position, angle);
+        this.playerWeapon.useSecondary();
     }
 
     public void takeDamage(int damage) {
@@ -55,8 +67,11 @@ public class OfficeChair extends GameActor {
 
     // Get the health of the player
     void update(float tpf) {
-
+        Vector3f mult = playerInput.getLeftAxisVector().mult(maxSpeed);
+        System.out.println(mult.x + " " + mult.y + " " + mult.z);
         this.movement(playerInput.getLeftAxisVector().mult(maxSpeed));
+        Vector3f local = this.objectModel.worldToLocal(this.rigidBody.getPhysicsLocation(), new Vector3f());
+        this.objectModel.setLocalTranslation(local);
         angle = playerInput.getRightAxisDirection();
     }
 

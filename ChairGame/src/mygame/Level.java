@@ -93,6 +93,7 @@ public class Level implements PhysicsCollisionListener {
      * @param tpf
      */
     public void update(float tpf){
+        System.out.println("Hello");
         for(GameObject g : killUs){
             physicsSpace.removeAll(g.objectModel);
             switch (g.type){
@@ -109,6 +110,7 @@ public class Level implements PhysicsCollisionListener {
             killUs.remove(g);
         }
         for(GameObject g: allObjects){
+            System.out.println("Updating " + g.objectModel.getName());
             g.update(tpf);
         }
     }
