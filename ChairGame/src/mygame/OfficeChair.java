@@ -34,7 +34,7 @@ public class OfficeChair extends GameActor {
     
     public OfficeChair(Level gameLevel, Vector2f startPosition, float angle,
             InputController playerInput, Spatial objectModel) {
-        super(new CircleF(startPosition, 1));
+        super(new CircleF(startPosition, 0.5f));
         this.type = GameObjectType.ACTOR;
         this.health = health;
         this.objectModel = objectModel;

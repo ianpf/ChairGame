@@ -62,7 +62,7 @@ public class Level {
             allPlayers[count++] = chair;
         }
         
-        Main.setPlayers(allPlayers);
+        //Main.setPlayers(allPlayers);
         
         Vector3f min = new Vector3f(-21.0f, 0.0f, -21.0f);
         Vector3f max = new Vector3f(-20.0f, 6.0f, 21.0f);
@@ -181,21 +181,22 @@ public class Level {
 
             for (MoveableGameObject g2: moveableObjects){
                 if (g != g2){
-                    g.boundingCircle.collidesWithCircle(g2.boundingCircle);
-                    if (g.type == GameObjectType.PROJECTILE &&
-                            ((Projectile) g).getOwner() != g2){
-                        rootNode.detachChild(g.objectModel);
-                        moveableObjects.remove((MoveableGameObject) g);
+                    if (g.boundingCircle.collidesWithCircle(g2.boundingCircle)) {
+                        if (g.type == GameObjectType.PROJECTILE &&
+                                ((GameObject)((Projectile) g).getOwner()) != g2){
+                            rootNode.detachChild(g.objectModel);
+                            moveableObjects.remove((MoveableGameObject) g);
+                        }
                     }
                 }
             }
             
             for (StaticGameObject g2: staticObjects){
-                g.boundingCircle.collidesWithRect(g2.boundingRect);
-                if (g.type == GameObjectType.PROJECTILE &&
-                            ((Projectile) g).getOwner() != g2){
-                    rootNode.detachChild(g.objectModel);
-                    moveableObjects.remove((MoveableGameObject) g);
+                if (g.boundingCircle.collidesWithRect(g2.boundingRect)) {
+                    if (g.type == GameObjectType.PROJECTILE ){
+                        rootNode.detachChild(g.objectModel);
+                        moveableObjects.remove((MoveableGameObject) g);
+                    }
                 }
             }
            

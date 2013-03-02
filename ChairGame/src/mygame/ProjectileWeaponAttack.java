@@ -25,7 +25,7 @@ public class ProjectileWeaponAttack extends WeaponAttack {
         
     }
     public void use() {
-        Vector3f vel = new Vector3f(0, 0, -1);
+        Vector3f vel = new Vector3f(0, 0, -2);
         
         float angle = getWeapon().getOwner().getAngle();
         float[] angles = {0, angle, 0};
