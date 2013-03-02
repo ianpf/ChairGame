@@ -21,7 +21,6 @@ import java.util.LinkedList;
  */
 public class Level implements PhysicsCollisionListener {
     
-    PhysicsSpace physicsSpace;
     Node rootNode;
     AssetManager assetManager;
     InputManager inputManager;
@@ -35,7 +34,6 @@ public class Level implements PhysicsCollisionListener {
         rootNode = root;
         assetManager = assets;
         inputManager = input;
-        physicsSpace = new PhysicsSpace();
         killUs = new LinkedList<GameObject>();
         allObjects = new LinkedList<GameObject>();
         
@@ -43,23 +41,14 @@ public class Level implements PhysicsCollisionListener {
         Spatial chairSpatial = 
                 assetManager.loadModel("Models/Angry Chair/Angry Chair.j3o");
         rootNode.attachChild(chairSpatial);
-        Vector3f chairHalfExtent = 
-                ((BoundingBox) chairSpatial.getWorldBound())
-                    .getExtent(new Vector3f());
-        chairHalfExtent = chairHalfExtent.mult(0.5f);
-        PhysicsRigidBody chairBody = new PhysicsRigidBody(
-                new BoxCollisionShape(chairHalfExtent));
-        physicsSpace.addCollisionObject(chairBody);
         
         OfficeChair chair= new OfficeChair(
                 this, 
                 new Vector3f(0.0f, 0.0f, 0.0f),
                 0.0f, 
                 (XboxController) controllerListener.getInputControllers()[0], 
-                chairSpatial,
-                chairBody);
-        
-        
+                chairSpatial);
+
     }
     
     
@@ -81,21 +70,10 @@ public class Level implements PhysicsCollisionListener {
     
     /**
      *
-     * @param event
-     */
-    @Override
-    public void collision(PhysicsCollisionEvent event){
-        
-    }
-    
-    /**
-     *
      * @param tpf
      */
     public void update(float tpf){
-        System.out.println("Hello");
         for(GameObject g : killUs){
-            physicsSpace.removeAll(g.objectModel);
             switch (g.type){
                 case ACTOR: 
                     rootNode.detachChild(g.objectModel);
@@ -110,7 +88,6 @@ public class Level implements PhysicsCollisionListener {
             killUs.remove(g);
         }
         for(GameObject g: allObjects){
-            System.out.println("Updating " + g.objectModel.getName());
             g.update(tpf);
         }
     }
