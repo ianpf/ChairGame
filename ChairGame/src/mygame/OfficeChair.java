@@ -5,6 +5,7 @@ import com.jme3.math.Vector3f;
 import chair.input.*;
 import com.jme3.scene.Spatial;
 import com.jme3.bullet.objects.PhysicsRigidBody;
+import com.jme3.math.Quaternion;
 
 /**
  * @author Ian Fisher
@@ -75,7 +76,12 @@ public class OfficeChair extends GameActor {
         {
             primaryAttack();
         }
+        
+        float[] angles = {0, playerInput.getRightAxisDirection(), 0};
+        Quaternion rot = new Quaternion(angles);
+        objectModel.setLocalRotation(rot);
     }
+    
 
     int getHealth() {
         return this.health;
