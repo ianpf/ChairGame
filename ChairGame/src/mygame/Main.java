@@ -1,6 +1,8 @@
 package mygame;
 
 import chair.input.InputController;
+import chair.input.InputListener;
+import chair.input.KeyboardInputListener;
 import chair.input.XboxInputListener;
 import com.jme3.app.SimpleApplication;
 import com.jme3.niftygui.NiftyJmeDisplay;
@@ -26,10 +28,15 @@ import mygame.GameMenuHUD;
  */
 public class Main extends SimpleApplication
 {
+<<<<<<< HEAD
     XboxInputListener il;
     public static Level l;
     static boolean startLevel = false;
     
+=======
+    InputListener il;
+
+>>>>>>> input
     public static void main(String[] args) {
         Main app = new Main();
         app.setPauseOnLostFocus(false);
@@ -60,8 +67,12 @@ public class Main extends SimpleApplication
         setDisplayStatView(false);
         setDisplayFps(false);
         
+<<<<<<< HEAD
         loadMainMenu();
    
+=======
+        il = new KeyboardInputListener(inputManager);
+>>>>>>> input
     }
     
     
@@ -70,6 +81,7 @@ public class Main extends SimpleApplication
     @Override
     public void simpleUpdate(float tpf)
     {
+<<<<<<< HEAD
         if(startLevel){
             l = new Level(rootNode, assetManager, inputManager);
             startLevel = false;
@@ -82,6 +94,11 @@ public class Main extends SimpleApplication
         //InputController controller = il.getInputControllers()[0];
         //controller.getLeftAxisDirection();
         //System.out.println("LS Angle = " + controller.getLeftAxisDirection() + " LS Power =" + controller.getLeftAxisPower());
+=======
+        InputController controller = il.getInputControllers()[0];
+        controller.getLeftAxisDirection();
+        System.out.println("LS Angle = " + controller.getLeftAxisDirection() + " LS Power =" + controller.getLeftAxisPower());
+>>>>>>> input
         //System.out.println("RS Angle = " + controller.getRightAxisDirection() + " RS Power =" + controller.getRightAxisPower());
     }
 
