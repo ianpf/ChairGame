@@ -1,10 +1,9 @@
 package mygame;
 
-import chair.input.XboxController;
-import chair.input.XboxInputListener;
+import chair.input.*;
 import com.jme3.asset.AssetManager;
 import com.jme3.input.InputManager;
-import com.jme3.math.Vector3f;
+import com.jme3.math.Vector2f;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import java.util.LinkedList;
@@ -31,18 +30,18 @@ public class Level {
         killUs = new LinkedList<GameObject>();
         allObjects = new LinkedList<GameObject>();
         
-        XboxInputListener controllerListener = new XboxInputListener(input);
+        InputListener controllerListener = new KeyboardInputListener(input);
         Spatial chairSpatial = 
                 assetManager.loadModel("Models/Angry Chair/Angry Chair.j3o");
         rootNode.attachChild(chairSpatial);
         
         OfficeChair chair= new OfficeChair(
                 this, 
-                new Vector3f(0.0f, 0.0f, 0.0f),
+                new Vector2f(0.0f, 0.0f),
                 0.0f, 
-                (XboxController) controllerListener.getInputControllers()[0], 
+                (InputController) controllerListener.getInputControllers()[0], 
                 chairSpatial);
-
+                this.allObjects.add(chair);
     }
     
     

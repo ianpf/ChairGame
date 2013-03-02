@@ -1,11 +1,16 @@
 package mygame;
 
-
 import chair.input.XboxInputListener;
+import chair.input.*;
 import com.jme3.app.SimpleApplication;
 import com.jme3.niftygui.NiftyJmeDisplay;
 import com.jme3.renderer.RenderManager;
 import de.lessvoid.nifty.Nifty;
+import de.lessvoid.nifty.screen.Screen;
+import mygame.GameMenuHUD;
+import com.jme3.scene.Geometry;
+import com.jme3.scene.shape.Box;
+import com.jme3.system.AppSettings;
 
 /**
  * test
@@ -14,13 +19,19 @@ import de.lessvoid.nifty.Nifty;
  */
 public class Main extends SimpleApplication
 {
-    XboxInputListener il;
+
     public static Level l;
     static boolean startLevel = false;
     
+    InputListener il;
+
+
     public static void main(String[] args) {
         Main app = new Main();
         app.setPauseOnLostFocus(false);
+        AppSettings settings = new AppSettings(true);
+        settings.putBoolean("DisableJoysticks", false);
+        app.setSettings(settings);
         app.start();
     }
     
@@ -49,7 +60,8 @@ public class Main extends SimpleApplication
         setDisplayFps(false);
         
         loadMainMenu();
-   
+
+        il = new KeyboardInputListener(inputManager);
     }
     
     

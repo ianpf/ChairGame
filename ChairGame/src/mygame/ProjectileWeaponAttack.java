@@ -23,8 +23,8 @@ public class ProjectileWeaponAttack extends WeaponAttack {
         
     }
     public void use() {
-        Projectile shot = new Projectile(getWeapon().getOwner().getPosition(), damage, getWeapon().getOwner().getAngle(), speed);
-        getWeapon().getOwner().getLevel().spawnProjectile(shot);
+    //    Projectile shot = new Projectile(getWeapon().getOwner().getPosition(), damage, getWeapon().getOwner().getAngle(), speed);
+    //    getWeapon().getOwner().getLevel().spawnProjectile(shot);
     }
     
 }

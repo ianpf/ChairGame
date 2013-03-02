@@ -15,7 +15,11 @@ public class BossChair extends GameActor {
     private Vector3f position;
     private Level gameLevel;
     private float maxSpeed = 0.11f;
-    void update(float tpf) {
+    public void update(float tpf) {
+    }
+    
+    public BossChair (CircleF circle){
+        super(circle);
     }
 
     public void takeDamage(int damage) {
