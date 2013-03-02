@@ -22,7 +22,8 @@ public class Projectile extends MoveableGameObject {
     private Vector2f direction;
     
     public Projectile(OfficeChair owner, Vector2f location, Vector2f velocity, int damage) {
-        super(new CircleF(location, 0.5f));
+        super(new CircleF(location.add(location.normalize().mult(2)), 0.5f));
+        //super(new CircleF(location, 0.5f));
         this.owner = owner;
         this.type = GameObjectType.PROJECTILE;
         this.velocity = velocity;
