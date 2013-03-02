@@ -1,3 +1,6 @@
 /ChairGame/nbproject/private/
 /ChairGame/build/
 /ChairGame/dist/
+*.dylib
+*.dll
+*.jnilib
