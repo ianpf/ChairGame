@@ -18,6 +18,9 @@ import com.jme3.renderer.RenderManager;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.screen.Screen;
 import mygame.GameMenuHUD;
+import com.jme3.scene.Geometry;
+import com.jme3.scene.shape.Box;
+import com.jme3.system.AppSettings;
 
 /**
  * test
@@ -33,6 +36,9 @@ public class Main extends SimpleApplication
     public static void main(String[] args) {
         Main app = new Main();
         app.setPauseOnLostFocus(false);
+        AppSettings settings = new AppSettings(true);
+        settings.putBoolean("DisableJoysticks", false);
+        app.setSettings(settings);
         app.start();
     }
     
