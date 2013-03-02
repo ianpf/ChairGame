@@ -43,7 +43,7 @@ public class Level {
                 this.allObjects.add(chair);
                 
         chairSpatial = 
-                assetManager.loadModel("Models/fezzChair/fezzChair.j30");
+                assetManager.loadModel("Models/fezzChair/fezzChair.j3o");
         rootNode.attachChild(chairSpatial); //Second chair.
         chair = new OfficeChair(
                 this, 
