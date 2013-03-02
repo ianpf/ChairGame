@@ -62,7 +62,7 @@ public class Level {
             allPlayers[count++] = chair;
         }
         
-        //Main.setPlayers(allPlayers);
+        Main.setPlayers(allPlayers);
         
         Vector3f min = new Vector3f(-21.0f, 0.0f, -21.0f);
         Vector3f max = new Vector3f(-20.0f, 6.0f, 21.0f);
