@@ -50,7 +50,6 @@ public class Main extends SimpleApplication
     }
     
     
-    
     public Nifty nifty;
     public static int gameState = 0;
     public void loadMainMenu() {
@@ -69,6 +68,8 @@ public class Main extends SimpleApplication
 
         setDisplayStatView(false);
         setDisplayFps(false);
+        
+        GameCredits.creds = new GameCredits(audioRenderer, assetManager, inputManager, guiViewPort);
         
         loadMainMenu();
 
