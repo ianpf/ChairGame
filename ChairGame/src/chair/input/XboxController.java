@@ -72,7 +72,16 @@ public class XboxController extends InputController
     public Vector3f getLeftAxisVector()
     {
         Vector3f dir;
-        dir = new Vector3f(leftXAxis, 0, -leftYAxis);
+        
+        String os = System.getProperty("os.name").toLowerCase();
+        if(os.indexOf("win") >= 0)
+        {
+            dir = new Vector3f(-leftYAxis, 0, leftXAxis);
+        }
+        else
+        {
+            dir = new Vector3f(-leftXAxis, 0, -leftYAxis);
+        }
         
         return dir;
     }
@@ -80,9 +89,18 @@ public class XboxController extends InputController
     @Override
     public float getLeftAxisDirection() 
     {
+        String os = System.getProperty("os.name").toLowerCase();
+        
         //System.out.println("LX: " + leftXAxis + " LY: " + leftYAxis);
         Vector2f dir;
-        dir = new Vector2f(leftXAxis, -leftYAxis);
+        if(os.indexOf("win") >= 0)
+        {
+            dir = new Vector2f(-leftYAxis, leftXAxis);
+        }
+        else
+        {
+            dir = new Vector2f(leftXAxis, -leftYAxis);
+        }
         float length = Math.min(1, dir.length());
         dir.normalizeLocal();
             
@@ -92,7 +110,18 @@ public class XboxController extends InputController
     @Override
     public float getLeftAxisPower() 
     {
-        Vector2f dir = new Vector2f(leftXAxis, -leftYAxis);
+        String os = System.getProperty("os.name").toLowerCase();
+        
+        //System.out.println("LX: " + leftXAxis + " LY: " + leftYAxis);
+        Vector2f dir;
+        if(os.indexOf("win") >= 0)
+        {
+            dir = new Vector2f(-leftYAxis, leftXAxis);
+        }
+        else
+        {
+            dir = new Vector2f(leftXAxis, -leftYAxis);
+        }
         float length = java.lang.Math.min(1, dir.length());
         
         return Math.min(1, dir.length());
