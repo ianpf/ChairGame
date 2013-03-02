@@ -70,6 +70,8 @@ public class OfficeChair extends GameActor {
         Vector3f mult = playerInput.getLeftAxisVector().mult(maxSpeed);
         System.out.println(mult.x + " " + mult.y + " " + mult.z);
         this.movement(playerInput.getLeftAxisVector().mult(maxSpeed));
+        Vector3f local = this.objectModel.worldToLocal(this.rigidBody.getPhysicsLocation(), new Vector3f());
+        this.objectModel.setLocalTranslation(local);
         angle = playerInput.getRightAxisDirection();
     }
 
