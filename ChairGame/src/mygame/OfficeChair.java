@@ -9,9 +9,9 @@ import com.jme3.bullet.objects.PhysicsRigidBody;
  * @author Ian Fisher
  */
 public class OfficeChair extends GameActor {
-    private float angle;
+    
+	private float angle;
     private int health = 100;
-    private Vector3f position = new Vector3f();
     private Level gameLevel;
     private Weapon playerWeapon;
     private XboxController playerInput;
