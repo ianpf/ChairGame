@@ -93,6 +93,10 @@ public class Level {
         }
         for(GameObject g: allObjects){
             g.update(tpf);
+            OfficeChair a = (OfficeChair)allObjects.get(0);
+            OfficeChair b = (OfficeChair)allObjects.get(1);
+            if (a.getBoundingCircle().collidesWithCircle(b.getBoundingCircle()))
+                System.out.println("Fuck yeah");
         }
     }
     
