@@ -1,5 +1,6 @@
 package mygame;
 
+import chair.input.XboxInputListener;
 import chair.input.*;
 import com.jme3.app.SimpleApplication;
 import com.jme3.niftygui.NiftyJmeDisplay;
