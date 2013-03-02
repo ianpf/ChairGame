@@ -14,11 +14,11 @@ public class OfficeChair extends GameActor {
     private Vector3f position = new Vector3f();
     private Level gameLevel;
     private Weapon playerWeapon;
-    private XboxController playerInput;
+    private InputController playerInput;
     private float maxSpeed = 0.1f;
 
     public OfficeChair(Level gameLevel, Vector3f startPosition, float angle,
-            XboxController playerInput, Spatial objectModel, PhysicsRigidBody
+            InputController playerInput, Spatial objectModel, PhysicsRigidBody
                     rigidBody) {
         this.type = GameObjectType.ACTOR;
         this.health = health;
