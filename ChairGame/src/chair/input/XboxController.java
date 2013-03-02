@@ -25,6 +25,38 @@ public class XboxController extends InputController
     public static final int LEFT_TRIGGER = 4;
     public static final int RIGHT_TRIGGER = 5;
     
+    public static final int DIR_UP = 0;
+    public static final int DIR_DOWN = 1;
+    public static final int DIR_LEFT = 2;
+    public static final int DIR_RIGHT = 3;
+    public static final int START = 4;
+    public static final int BACK = 5;
+    public static final int LSBUTTON = 6;
+    public static final int RSBUTTON = 7;
+    public static final int LEFT_BUMPER = 8;
+    public static final int RIGHT_BUMPER = 9;
+    public static final int XBOX_BUTTON = 10;
+    public static final int A_BUTTON = 11;
+    public static final int B_BUTTON = 12;
+    public static final int X_BUTTON = 13;
+    public static final int Y_BUTTON = 14;
+    
+    private boolean isDirUp;
+    private boolean isDirDown;
+    private boolean isDirLeft;
+    private boolean isDirRight;
+    private boolean isStart;
+    private boolean isBack;
+    private boolean isLSButton;
+    private boolean isRSButton;
+    private boolean isLeftBumper;
+    private boolean isRightBumper;
+    private boolean isXBoxButton;
+    private boolean isA_Button;
+    private boolean isB_Button;
+    private boolean isX_Button;
+    private boolean isY_Button;
+    
     private Joystick joystick;
     
     public XboxController(Joystick joystick)
@@ -73,7 +105,7 @@ public class XboxController extends InputController
         Vector2f dir;
         dir = new Vector2f(rightXAxis, rightYAxis);
         dir.normalizeLocal();
-            
+        
         return dir.getAngle();
     }
 
@@ -84,5 +116,159 @@ public class XboxController extends InputController
         dir = new Vector2f(rightXAxis, rightYAxis);
         
         return Math.min(1, dir.length());
+    }
+    
+    public boolean isDirUp()
+    {
+        boolean res = isDirUp;
+        
+        isDirUp = false;
+        
+        return res;
+    }
+    
+    public void setDirUp()
+    {
+        isDirUp = true;
+    }
+    
+    public boolean isDirDown()
+    {
+        boolean res = isDirDown;
+        
+        isDirDown = false;
+        
+        return res;
+    }
+    
+    public void setDirDown()
+    {
+        isDirDown = true;
+    }
+    
+    public boolean isDirLeft()
+    {
+        boolean res = isDirLeft;
+        
+        isDirLeft = false;
+        
+        return res;
+    }
+    
+    public void setDirLeft()
+    {
+        isDirLeft = true;
+    }
+    
+    public boolean isDirRight()
+    {
+        boolean res = isDirRight;
+        
+        isDirRight = false;
+        
+        return res;
+    }
+    
+    public void setDirRight()
+    {
+    }
+    
+    public boolean isStart()
+    {
+        boolean res = isStart;
+        
+        isStart = false;
+        
+        return res;
+    }
+    
+    public boolean isBack()
+    {
+        boolean res = isBack;
+        
+        isBack = false;
+        
+        return res;
+    }
+    
+    public boolean isLSButton()
+    {
+        boolean res = isLSButton;
+        
+        isLSButton = false;
+        
+        return res;
+    }
+    
+    public boolean isRSButton()
+    {
+        boolean res = isRSButton;
+        
+        isRSButton = false;
+        
+        return res;
+    }
+    
+    public boolean isLeftBumper()
+    {
+        boolean res = isLeftBumper;
+        
+        isLeftBumper = false;
+        
+        return res;
+    }
+    
+    public boolean isRightBumper()
+    {
+        boolean res = isRightBumper;
+        
+        isRightBumper = false;
+        
+        return res;
+    }
+    
+    public boolean isXBoxButton()
+    {
+        boolean res = isXBoxButton;
+        
+        isXBoxButton = false;
+        
+        return res;
+    }
+    
+    public boolean isA_Button()
+    {
+        boolean res = isA_Button;
+        
+        isA_Button = false;
+        
+        return res;
+    }
+    
+    public boolean isB_Button()
+    {
+        boolean res = isB_Button;
+        
+        isB_Button = false;
+        
+        return res;
+    }
+    
+    public boolean isX_Button()
+    {
+        boolean res = isX_Button;
+        
+        isX_Button = false;
+        
+        return res;
+    }
+    
+    public boolean isY_Button()
+    {
+        boolean res = isY_Button;
+        
+        isY_Button = false;
+        
+        return res;
     }
 }

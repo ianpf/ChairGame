@@ -81,6 +81,51 @@ public class XboxInputListener extends InputListener
 
     public void onJoyButtonEvent(JoyButtonEvent evt) 
     {
+        InputController ic = controllers[0];
+        
+        for(InputController c : controllers)
+        {
+            if(c.getControllerID() == evt.getJoyIndex())
+            {
+                ic = c;
+                break;
+            }
+        }
+        
+        switch(evt.getButtonIndex())
+        {
+            case XboxController.DIR_UP:
+                break;
+            case XboxController.DIR_DOWN:
+                break;
+            case XboxController.DIR_LEFT:
+                break;
+            case XboxController.DIR_RIGHT:
+                break;
+            case XboxController.START:
+                break;
+            case XboxController.BACK:
+                break;
+            case XboxController.LSBUTTON:
+                break;
+            case XboxController.RSBUTTON:
+                break;
+            case XboxController.LEFT_BUMPER:
+                break;
+            case XboxController.RIGHT_BUMPER:
+                break;
+            case XboxController.XBOX_BUTTON:
+                break;
+            case XboxController.A_BUTTON:
+                break;
+            case XboxController.B_BUTTON:
+                break;
+            case XboxController.X_BUTTON:
+                break;
+            case XboxController.Y_BUTTON:
+                break;
+            default:
+        }
     }
 
 }
