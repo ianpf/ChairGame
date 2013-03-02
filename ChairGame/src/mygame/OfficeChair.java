@@ -26,6 +26,12 @@ public class OfficeChair extends GameActor {
         "Models/partyChair/partyChair.j3o"
     };
     
+    public static String[] names = {
+        "Carrie de Way", "Ike Aramba", "poospoon", "StormtrooprDave",
+        "Nuadu", "?!?!?!", "RoflCopter", "Sputnik", "Mr. Bread",
+        "Mrs. Butter", "Baby Pudding", "Fudgemister", "[Undecided]"
+    };
+    
     public OfficeChair(Level gameLevel, Vector2f startPosition, float angle,
             InputController playerInput, Spatial objectModel) {
         super(new CircleF(startPosition, 1));
