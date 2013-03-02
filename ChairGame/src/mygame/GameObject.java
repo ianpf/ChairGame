@@ -15,6 +15,10 @@ public abstract class GameObject {
     protected GameObjectType type;
     
 	
+    public void setSpatial(Spatial spatial) {
+        this.objectModel = spatial;
+    }
+    
     abstract void update(float tpf);
     
     abstract void onCollision(GameObject other);
