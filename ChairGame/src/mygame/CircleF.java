@@ -71,13 +71,13 @@ public class CircleF {
 			}
 		}
 		if ((x > target.getLeft()) && (x < target.getRight())) {
-			if ((bottom < target.getTop()) && (bottom > target.getLeft())) {
+			if ((bottom < target.getTop()) && (bottom > target.getBottom())) {
 				if (resolve) {
 					itsPosition.setY(itsPosition.getY() + (target.getTop() - bottom));
 				}
 				return true;
 			}
-			if ((top < target.getTop()) && (top > target.getLeft())) {
+			if ((top < target.getTop()) && (top > target.getBottom())) {
 				if (resolve) {
 					itsPosition.setY(itsPosition.getY() + (target.getBottom() - top));
 				}
