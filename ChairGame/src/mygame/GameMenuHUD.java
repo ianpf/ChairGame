@@ -29,7 +29,7 @@ public class GameMenuHUD implements ScreenController
     public void startLevel(){
         
         Main.startLevel();
-        //nifty.exit();
+        nifty.exit();
     }
     
     public void gameCredits(){
