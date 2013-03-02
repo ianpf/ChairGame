@@ -52,24 +52,28 @@ public class Level {
         Geometry g = new Geometry("Box Left", b);
         Wall wall = new Wall(g, -21.0f, -21.0f, 1.0f, 42.0f);
         this.staticObjects.add(wall);
+        rootNode.attachChild(g);
         min = new Vector3f(-20.0f, 0.0f, 20.0f);
         max = new Vector3f(20.0f, 3.0f, 21.0f);
         b = new Box(min, max);
         g = (new Geometry("Box Top", b));
         wall = new Wall(g, -20.0f, 20.0f, 40.0f, 1.0f);
         this.staticObjects.add(wall);
+        rootNode.attachChild(g);
         min = new Vector3f(20.0f, 0.0f, -21.0f);
         max = new Vector3f(21.0f, 3.0f, 21.0f);
         b = new Box(min, max);
         g = (new Geometry("Box Right", b));
         wall = new Wall(g, 20.0f, -21.0f, 1.0f, 42.0f);
         this.staticObjects.add(wall);
+        rootNode.attachChild(g);
         min = new Vector3f(-20.0f, 0.0f, -21.0f);
         max = new Vector3f(20.0f, 3.0f, -20.0f);
         b = new Box(min, max);
         g = (new Geometry("Box Bottom", b));
         wall = new Wall(g, -20.0f, -21.0f, 40.0f, 1.0f);
         this.staticObjects.add(wall);
+        rootNode.attachChild(g);
 
         
     }
