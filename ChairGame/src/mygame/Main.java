@@ -13,6 +13,7 @@ import com.jme3.input.event.MouseMotionEvent;
 import com.jme3.input.event.TouchEvent;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
+import com.jme3.math.Quaternion;
 import com.jme3.renderer.RenderManager;
 import de.lessvoid.nifty.Nifty;
 import de.lessvoid.nifty.screen.Screen;
@@ -21,6 +22,7 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.shape.Box;
 import com.jme3.system.AppSettings;
 import com.jme3.math.Vector3f;
+import com.jme3.light.*;
 
 /**
  * test
@@ -69,7 +71,7 @@ public class Main extends SimpleApplication
         setDisplayStatView(false);
         setDisplayFps(false);
         
-        GameCredits.creds = new GameCredits(audioRenderer, assetManager, inputManager, guiViewPort);
+       // GameCredits.creds = new GameCredits(audioRenderer, assetManager, inputManager, guiViewPort);
         
         loadMainMenu();
 
@@ -85,8 +87,11 @@ public class Main extends SimpleApplication
         if(startLevel){
             l = new Level(rootNode, assetManager, inputManager);
             startLevel = false;
-            cam.setLocation(new Vector3f(0, 30, 0));
-            cam.lookAt(new Vector3f(0, 0, 0), new Vector3f(0, 1, 0));
+            cam.setLocation(new Vector3f(0, 20, -30));
+            cam.lookAt(new Vector3f(0, 0, 30), new Vector3f(0, 1, 0));
+            AmbientLight light = new AmbientLight();
+            light.setColor(ColorRGBA.White.mult(1.3f));
+            rootNode.addLight(light);
         }
         if(l != null){
             l.update(tpf);

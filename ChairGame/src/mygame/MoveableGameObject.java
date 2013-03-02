@@ -7,7 +7,7 @@ public abstract class MoveableGameObject extends GameObject {
 	
 	protected CircleF boundingCircle;
 	protected Vector2f velocity;
-        protected float maxSpeed = 1f;
+        protected float maxSpeed = 3f;
 	
 	public MoveableGameObject(CircleF boundingCircle) {
 		super();
