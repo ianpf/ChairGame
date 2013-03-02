@@ -32,7 +32,7 @@ public class CircleF {
 	}
 	
 	public boolean collidesWithCircle(CircleF target) {
-		return collidesWithCircle(target, false);
+		return collidesWithCircle(target, true);
 	}
 	public boolean collidesWithCircle(CircleF target, boolean resolve) {
 		Vector2f displacement = target.getPosition().subtract(itsPosition).normalize();
@@ -47,7 +47,7 @@ public class CircleF {
 		return false;
 	}
 	public boolean collidesWithRect(RectF target) {
-		return collidesWithRect(target, false);
+		return collidesWithRect(target, true);
 	}
 	public boolean collidesWithRect(RectF target, boolean resolve) {
 		float x = itsPosition.getX();
