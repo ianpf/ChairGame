@@ -27,7 +27,17 @@ public class Projectile extends MoveableGameObject {
         this.type = GameObjectType.PROJECTILE;
         this.velocity = velocity;
         this.damage = damage;
-            
+        
+        
+    }
+    
+    @Override
+    public void setSpatial(Spatial spatial) {
+        super.setSpatial(spatial);
+        float angle = getOwner().getAngle();
+        float[] angles = {0, angle, 0};
+        Quaternion rot = new Quaternion(angles);
+        this.objectModel.setLocalRotation(rot);// = rot.mult(vel);
     }
     
     public OfficeChair getOwner() {
