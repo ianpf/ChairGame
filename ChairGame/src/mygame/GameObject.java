@@ -2,6 +2,7 @@ package mygame;
 
 import com.jme3.scene.Spatial;
 import com.jme3.bullet.objects.PhysicsRigidBody;
+import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
 
 /**
@@ -13,8 +14,6 @@ public abstract class GameObject {
     protected Spatial objectModel;
     protected GameObjectType type;
     
-	private Vector2f speed;
-	
     void moveToLocation(Vector3f newLocation){
         objectModel.setLocalTranslation(
                 objectModel.worldToLocal(newLocation, new Vector3f()));
